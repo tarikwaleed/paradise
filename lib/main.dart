@@ -1,32 +1,57 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
-void main() => runApp(new MyApp());
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
-      /*
-      todo: choose a catchy name for the app
-      the app will be for multiple companies
-      */
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      //RTL support
+      localizationsDelegates: [
+        GlobalCupertinoLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: [
+        Locale(
+          "ar",
+          "AE",
+        ), // OR Locale('ar', 'AE') OR Other RTL locales
+      ],
+      locale: Locale(
+        "ar",
+        "AE",
+      ),
+      // OR Locale('ar', 'AE') OR Other RTL locales,
       title: 'xTours App',
-      theme: new ThemeData(primarySwatch: Colors.yellow),
-      home: new LoginPage(),
+      theme: ThemeData(
+          primarySwatch: Colors.yellow,
+          fontFamily: 'Tajawal',
+          textTheme: const TextTheme(
+            bodyText2: TextStyle(
+                fontSize: 20.0, fontFamily: 'Tajawal-Black',fontWeight: FontWeight.bold ),
+
+          )
+
+
+      ),
+      home: LoginPage(),
     );
   }
 }
 
 class LoginPage extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => new _LoginPageState();
+  State<StatefulWidget> createState() => _LoginPageState();
 }
 
 enum FormType { login, register }
 
 class _LoginPageState extends State<LoginPage> {
-  final TextEditingController _emailFilter = new TextEditingController();
-  final TextEditingController _passwordFilter = new TextEditingController();
+  final TextEditingController _emailFilter = TextEditingController();
+  final TextEditingController _passwordFilter = TextEditingController();
   String _email = "";
   String _password = "";
   FormType _form_type = FormType
@@ -64,10 +89,10 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      body: new Container(
+    return Scaffold(
+      body: Container(
         padding: EdgeInsets.all(16.0),
-        child: new Column(
+        child: Column(
           children: <Widget>[
             _buildTextFields(),
             // _buildButtons(),
@@ -78,57 +103,62 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget _buildTextFields() {
-    return new Container(
-      child: new Column(
-        children: <Widget>[
-          new Container(
-            child: new TextField(
-              controller: _emailFilter,
-              decoration: new InputDecoration(labelText: 'Email'),
-            ),
+    return Column(
+      children: <Widget>[
+
+        TextField(
+          controller: _emailFilter,
+          decoration: const InputDecoration(labelText: 'اسم المستخدم'),
+          style: Theme
+              .of(context)
+              .textTheme
+              .bodyText2,
+        ),
+        Container(
+          child: TextField(
+            controller: _passwordFilter,
+            decoration: InputDecoration(labelText: 'الرقم السري'),
+            style: Theme
+                .of(context)
+                .textTheme
+                .bodyText2,
+            obscureText: true,
           ),
-          new Container(
-            child: new TextField(
-              controller: _passwordFilter,
-              decoration: new InputDecoration(labelText: 'Password'),
-              obscureText: true,
-            ),
-          )
-        ],
-      ),
+        )
+      ],
     );
   }
 
   Widget _buildButtons() {
     if (_form_type == FormType.login) {
-      return new Container(
-        child: new Column(
+      return Container(
+        child: Column(
           children: <Widget>[
-            new RaisedButton(
-              child: new Text('Login'),
+            RaisedButton(
+              child: Text('Login'),
               onPressed: _loginPressed,
             ),
-            new FlatButton(
-              child: new Text('Dont have an account? Tap here to register.'),
+            FlatButton(
+              child: Text('Dont have an account? Tap here to register.'),
               onPressed: _formChange,
             ),
-            new FlatButton(
-              child: new Text('Forgot Password?'),
+            FlatButton(
+              child: Text('Forgot Password?'),
               onPressed: _passwordReset,
             )
           ],
         ),
       );
     } else {
-      return new Container(
-        child: new Column(
+      return Container(
+        child: Column(
           children: <Widget>[
-            new RaisedButton(
-              child: new Text('Create an Account'),
+            RaisedButton(
+              child: Text('Create an Account'),
               onPressed: _createAccountPressed,
             ),
-            new FlatButton(
-              child: new Text('Have an account? Click here to login.'),
+            FlatButton(
+              child: Text('Have an account? Click here to login.'),
               onPressed: _formChange,
             )
           ],
