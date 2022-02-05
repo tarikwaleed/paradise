@@ -74,6 +74,7 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
+  //todo:factor out text fields
   Widget _buildTextFields() {
     return Center(
       child: Column(
@@ -81,6 +82,10 @@ class _LoginScreenState extends State<LoginScreen> {
           TextField(
             controller: _emailFilter,
             decoration: const InputDecoration(
+                prefixIcon: Padding(
+                  padding: const EdgeInsets.only(left: 12.0),
+                  child: Icon(Icons.person),
+                ),
                 labelText: 'اسم المستخدم',
                 border: OutlineInputBorder(),
                 hintText: 'الاسم او رقم التليفون'),
@@ -91,6 +96,10 @@ class _LoginScreenState extends State<LoginScreen> {
             child: TextField(
               controller: _passwordFilter,
               decoration: const InputDecoration(
+                prefixIcon: Padding(
+                  padding: const EdgeInsets.only(left: 12.0),
+                  child: Icon(Icons.lock),
+                ),
                 labelText: 'الرقم السري',
                 border: OutlineInputBorder(),
               ),
@@ -103,7 +112,7 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  //todo:change the logic
+  //todo:factor out buttons
   Widget _buildButtons() {
     if (_form_type == FormType.login) {
       return Column(
@@ -181,8 +190,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
   void _loginPressed() {
     print('The user wants to login with $_email and $_password');
-    Navigator.push(context,
-        MaterialPageRoute(builder: (context) => const HomeScreen()));
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => const HomeScreen()));
   }
 
   void _createAccountPressed() {
