@@ -14,18 +14,16 @@ class VerficationCodeScreen extends StatefulWidget {
 class _VerficationCodeScreenState extends State<VerficationCodeScreen> {
   final TextEditingController _verficationCodeController =
       TextEditingController();
-  String _verficationCode = "";
   final RoundedLoadingButtonController _buttonController =
       RoundedLoadingButtonController();
+  String _verficationCode = "";
 
   void _doSomething() async {
     Timer(Duration(seconds: 2), () {
       _buttonController.success();
-
     });
-    Navigator.push(context,
-        MaterialPageRoute(builder: (context) => const HomeScreen()));
-
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => const HomeScreen()));
   }
 
   @override

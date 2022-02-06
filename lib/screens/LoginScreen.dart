@@ -21,7 +21,6 @@ class _LoginScreenState extends State<LoginScreen> {
   final RoundedLoadingButtonController _createAccountBtnController =
       RoundedLoadingButtonController();
 
-
   String _email = "";
   String _password = "";
   FormType _form_type = FormType.login;
@@ -59,13 +58,15 @@ class _LoginScreenState extends State<LoginScreen> {
         children: <Widget>[
           TextField(
             controller: _emailFilter,
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
                 prefixIcon: Padding(
                   padding: const EdgeInsets.only(left: 12.0),
                   child: Icon(Icons.person_pin),
                 ),
                 labelText: 'اسم المستخدم',
-                border: OutlineInputBorder(),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(50),
+                ),
                 hintText: 'الاسم او رقم التليفون'),
             style: Theme.of(context).textTheme.bodyText2,
           ),
@@ -73,13 +74,15 @@ class _LoginScreenState extends State<LoginScreen> {
             padding: const EdgeInsets.only(top: 10.0),
             child: TextField(
               controller: _passwordFilter,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 prefixIcon: Padding(
                   padding: const EdgeInsets.only(left: 12.0),
                   child: Icon(Icons.lock_rounded),
                 ),
                 labelText: 'الرقم السري',
-                border: OutlineInputBorder(),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(50),
+                ),
               ),
               style: Theme.of(context).textTheme.bodyText2,
               obscureText: true,
@@ -125,13 +128,14 @@ class _LoginScreenState extends State<LoginScreen> {
             padding: const EdgeInsets.only(top: 20.0),
             child: ToggleButtons(
               // renderBorder: false,
+              fillColor: Colors.green,
               borderRadius: BorderRadius.circular(50.0),
-              constraints: BoxConstraints(minWidth: 100.0,minHeight: 50.0),
-              children:  <Widget>[
+              constraints: BoxConstraints(minWidth: 100.0, minHeight: 50.0),
+              children: <Widget>[
                 Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(top:15.0),
+                      padding: const EdgeInsets.only(top: 15.0),
                       child: Text("مدير"),
                     ),
                   ],
@@ -139,7 +143,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(top:15.0),
+                      padding: const EdgeInsets.only(top: 15.0),
                       child: Text(" موظف"),
                     ),
                   ],
@@ -147,7 +151,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(top:15.0),
+                      padding: const EdgeInsets.only(top: 15.0),
                       child: Text("مشرف"),
                     ),
                   ],
@@ -169,11 +173,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 });
               },
               isSelected: _isSelected,
-              color: Colors.grey,
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top:20.0),
+            padding: const EdgeInsets.only(top: 20.0),
             child: RoundedLoadingButton(
               child: const Text('انشاء حساب'),
               onPressed: _registerUser,
@@ -228,12 +231,12 @@ class _LoginScreenState extends State<LoginScreen> {
           : FormType.register;
     });
   }
+
   void _loginUser() async => Timer(const Duration(seconds: 3), () {
-    _loginBtnController.success();
-  });
+        _loginBtnController.success();
+      });
 
   void _registerUser() async => Timer(const Duration(seconds: 3), () {
-    _createAccountBtnController.success();
-  });
-
+        _createAccountBtnController.success();
+      });
 }

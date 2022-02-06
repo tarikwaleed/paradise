@@ -1,10 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:paradise/screens/HomeScreen.dart';
-import 'package:paradise/screens/ParadiseSplashScreen.dart';
-import 'screens/VerficationCodeScreen.dart';
 import 'screens/LoginScreen.dart';
 
 void main() {
@@ -33,7 +29,7 @@ class ParadiseApp extends StatelessWidget {
         "AE",
       ),
       // OR Locale('ar', 'AE') OR Other RTL locales,
-      title: 'xTours App',
+      title: 'Paradise App',
       theme: ThemeData(
           primarySwatch: Colors.yellow,
           fontFamily: 'Tajawal',
