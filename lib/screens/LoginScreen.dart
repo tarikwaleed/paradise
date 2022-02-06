@@ -1,8 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:paradise/screens/HomeScreen.dart';
 import 'package:paradise/screens/VerficationCodeScreen.dart';
 import 'package:paradise/widgets/ParadiseLogo.dart';
+import 'package:rounded_loading_button/rounded_loading_button.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -14,40 +17,17 @@ enum FormType { login, register }
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailFilter = TextEditingController();
   final TextEditingController _passwordFilter = TextEditingController();
+  final RoundedLoadingButtonController _loginBtnController =
+      RoundedLoadingButtonController();
+
+  final RoundedLoadingButtonController _createAccountBtnController =
+      RoundedLoadingButtonController();
+
+
   String _email = "";
   String _password = "";
   FormType _form_type = FormType.login;
   List<bool> _isSelected = [false, false, false];
-
-  _LoginScreenState() {
-    _emailFilter.addListener(_emailListen);
-    _passwordFilter.addListener(_passwordListen);
-  }
-
-  void _emailListen() {
-    if (_emailFilter.text.isEmpty) {
-      _email = "";
-    } else {
-      _email = _emailFilter.text;
-    }
-  }
-
-  void _passwordListen() {
-    if (_passwordFilter.text.isEmpty) {
-      _password = "";
-    } else {
-      _password = _passwordFilter.text;
-    }
-  }
-
-  // toggle between the two forms
-  void _formChange() async {
-    setState(() {
-      _form_type = (_form_type == FormType.register)
-          ? FormType.login
-          : FormType.register;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +64,7 @@ class _LoginScreenState extends State<LoginScreen> {
             decoration: const InputDecoration(
                 prefixIcon: Padding(
                   padding: const EdgeInsets.only(left: 12.0),
-                  child: Icon(Icons.person),
+                  child: Icon(Icons.person_pin),
                 ),
                 labelText: 'اسم المستخدم',
                 border: OutlineInputBorder(),
@@ -98,7 +78,7 @@ class _LoginScreenState extends State<LoginScreen> {
               decoration: const InputDecoration(
                 prefixIcon: Padding(
                   padding: const EdgeInsets.only(left: 12.0),
-                  child: Icon(Icons.lock),
+                  child: Icon(Icons.lock_rounded),
                 ),
                 labelText: 'الرقم السري',
                 border: OutlineInputBorder(),
@@ -118,10 +98,16 @@ class _LoginScreenState extends State<LoginScreen> {
       return Column(
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ElevatedButton(
+            padding: const EdgeInsets.all(20.0),
+            child: RoundedLoadingButton(
               child: Text('دخول'),
-              onPressed: _loginPressed,
+              onPressed: _loginUser,
+              controller: _loginBtnController,
+              color: Colors.yellow,
+              resetAfterDuration: true,
+              duration: Duration(milliseconds: 1),
+              completionDuration: Duration(milliseconds: 100),
+              successColor: Colors.green,
             ),
           ),
           TextButton(
@@ -169,9 +155,15 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Text('مدير|موظف|مشرف', style: TextStyle(fontSize: 16))),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: ElevatedButton(
+            child: RoundedLoadingButton(
               child: const Text('انشاء حساب'),
-              onPressed: _createAccountPressed,
+              onPressed: _registerUser,
+              controller: _createAccountBtnController,
+              color: Colors.yellow,
+              resetAfterDuration: true,
+              duration: Duration(milliseconds: 1),
+              completionDuration: Duration(milliseconds: 100),
+              successColor: Colors.green,
             ),
           ),
           TextButton(
@@ -188,19 +180,41 @@ class _LoginScreenState extends State<LoginScreen> {
 
   // These functions can self contain any user auth logic required, they all have access to _email and _password
 
-  void _loginPressed() {
-    print('The user wants to login with $_email and $_password');
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => const HomeScreen()));
+  _LoginScreenState() {
+    _emailFilter.addListener(_emailListen);
+    _passwordFilter.addListener(_passwordListen);
   }
 
-  void _createAccountPressed() {
-    print('The user wants to create an accoutn with $_email and $_password');
-    Navigator.push(context,
-        MaterialPageRoute(builder: (context) => const VerficationCodeScreen()));
+  void _emailListen() {
+    if (_emailFilter.text.isEmpty) {
+      _email = "";
+    } else {
+      _email = _emailFilter.text;
+    }
   }
 
-  void _passwordReset() {
-    print("The user wants a password reset request sent to $_email");
+  void _passwordListen() {
+    if (_passwordFilter.text.isEmpty) {
+      _password = "";
+    } else {
+      _password = _passwordFilter.text;
+    }
   }
+
+  // toggle between the two forms
+  void _formChange() async {
+    setState(() {
+      _form_type = (_form_type == FormType.register)
+          ? FormType.login
+          : FormType.register;
+    });
+  }
+  void _loginUser() async => Timer(const Duration(seconds: 3), () {
+    _loginBtnController.success();
+  });
+
+  void _registerUser() async => Timer(const Duration(seconds: 3), () {
+    _createAccountBtnController.success();
+  });
+
 }
