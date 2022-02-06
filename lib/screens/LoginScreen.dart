@@ -2,8 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:paradise/screens/HomeScreen.dart';
-import 'package:paradise/screens/VerficationCodeScreen.dart';
 import 'package:paradise/widgets/ParadiseLogo.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 
@@ -126,10 +124,34 @@ class _LoginScreenState extends State<LoginScreen> {
           Padding(
             padding: const EdgeInsets.only(top: 20.0),
             child: ToggleButtons(
-              children: const <Widget>[
-                Icon(Icons.person),
-                Icon(Icons.person),
-                Icon(Icons.person),
+              // renderBorder: false,
+              borderRadius: BorderRadius.circular(50.0),
+              constraints: BoxConstraints(minWidth: 100.0,minHeight: 50.0),
+              children:  <Widget>[
+                Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top:15.0),
+                      child: Text("مدير"),
+                    ),
+                  ],
+                ),
+                Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top:15.0),
+                      child: Text(" موظف"),
+                    ),
+                  ],
+                ),
+                Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top:15.0),
+                      child: Text("مشرف"),
+                    ),
+                  ],
+                ),
               ],
               onPressed: (int index) {
                 setState(() {
@@ -150,11 +172,8 @@ class _LoginScreenState extends State<LoginScreen> {
               color: Colors.grey,
             ),
           ),
-          const Padding(
-              padding: EdgeInsets.only(top: 8.0),
-              child: Text('مدير|موظف|مشرف', style: TextStyle(fontSize: 16))),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.only(top:20.0),
             child: RoundedLoadingButton(
               child: const Text('انشاء حساب'),
               onPressed: _registerUser,
