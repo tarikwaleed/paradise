@@ -10,7 +10,6 @@ class LoginScreen extends StatefulWidget {
   State<StatefulWidget> createState() => _LoginScreenState();
 }
 
-enum FormType { login, register }
 
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailFilter = TextEditingController();
@@ -23,7 +22,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   String _email = "";
   String _password = "";
-  FormType _form_type = FormType.login;
   List<bool> _isSelected = [false, false, false];
 
   @override
@@ -95,109 +93,23 @@ class _LoginScreenState extends State<LoginScreen> {
 
   //todo:factor out buttons
   Widget _buildButtons() {
-    if (_form_type == FormType.login) {
-      return Column(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: RoundedLoadingButton(
-              child: Text('دخول'),
-              onPressed: _loginUser,
-              controller: _loginBtnController,
-              color: Colors.yellow,
-              resetAfterDuration: true,
-              duration: Duration(milliseconds: 1),
-              completionDuration: Duration(milliseconds: 100),
-              successColor: Colors.green,
-            ),
+    return Column(
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: RoundedLoadingButton(
+            child: Text('دخول'),
+            onPressed: _loginUser,
+            controller: _loginBtnController,
+            color: Colors.yellow,
+            resetAfterDuration: true,
+            duration: Duration(milliseconds: 1),
+            completionDuration: Duration(milliseconds: 100),
+            successColor: Colors.green,
           ),
-          TextButton(
-            child: Text('ليس لديك حساب؟ انشاء حساب.'),
-            onPressed: _formChange,
-            style: TextButton.styleFrom(
-              primary: Colors.black,
-            ),
-          ),
-        ],
-      );
-    } else {
-      return Column(
-        children: <Widget>[
-          //todo:put the three circular buttons here
-          Padding(
-            padding: const EdgeInsets.only(top: 20.0),
-            child: ToggleButtons(
-              // renderBorder: false,
-              fillColor: Colors.green,
-              borderRadius: BorderRadius.circular(50.0),
-              constraints: BoxConstraints(minWidth: 100.0, minHeight: 50.0),
-              children: <Widget>[
-                Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 15.0),
-                      child: Text("مدير"),
-                    ),
-                  ],
-                ),
-                Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 15.0),
-                      child: Text(" موظف"),
-                    ),
-                  ],
-                ),
-                Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 15.0),
-                      child: Text("مشرف"),
-                    ),
-                  ],
-                ),
-              ],
-              onPressed: (int index) {
-                setState(() {
-                  //loops over the buttons and checks if the index of the button
-                  //equals the index of the selected item
-                  for (int buttonIndex = 0;
-                      buttonIndex < _isSelected.length;
-                      buttonIndex++) {
-                    if (buttonIndex == index) {
-                      _isSelected[buttonIndex] = true;
-                    } else {
-                      _isSelected[buttonIndex] = false;
-                    }
-                  }
-                });
-              },
-              isSelected: _isSelected,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 20.0),
-            child: RoundedLoadingButton(
-              child: const Text('انشاء حساب'),
-              onPressed: _registerUser,
-              controller: _createAccountBtnController,
-              color: Colors.yellow,
-              resetAfterDuration: true,
-              duration: Duration(milliseconds: 1),
-              completionDuration: Duration(milliseconds: 100),
-              successColor: Colors.green,
-            ),
-          ),
-          TextButton(
-            child: Text('لديك حساب بالفعل؟ دخول.'),
-            onPressed: _formChange,
-            style: TextButton.styleFrom(
-              primary: Colors.black,
-            ),
-          )
-        ],
-      );
-    }
+        ),
+      ],
+    );
   }
 
   // These functions can self contain any user auth logic required, they all have access to _email and _password
@@ -224,19 +136,8 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   // toggle between the two forms
-  void _formChange() async {
-    setState(() {
-      _form_type = (_form_type == FormType.register)
-          ? FormType.login
-          : FormType.register;
-    });
-  }
-
   void _loginUser() async => Timer(const Duration(seconds: 3), () {
         _loginBtnController.success();
       });
 
-  void _registerUser() async => Timer(const Duration(seconds: 3), () {
-        _createAccountBtnController.success();
-      });
 }
