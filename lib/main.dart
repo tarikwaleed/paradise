@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'screens/LoginScreen.dart';
 
 void main() {
@@ -31,13 +32,8 @@ class ParadiseApp extends StatelessWidget {
       title: 'Paradise App',
       theme: ThemeData(
           primarySwatch: Colors.yellow,
-          fontFamily: 'Tajawal',
-          textTheme: const TextTheme(
-            bodyText2: TextStyle(
-                fontSize: 20.0,
-                fontFamily: 'Tajawal',
-                fontWeight: FontWeight.bold),
-          )),
+          textTheme: GoogleFonts.tajawalTextTheme(),
+      ),
       home: LoginScreen(),
     );
   }

@@ -66,7 +66,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   borderRadius: BorderRadius.circular(50),
                 ),
                 hintText: 'الاسم او رقم التليفون'),
-            style: Theme.of(context).textTheme.bodyText2,
           ),
           Padding(
             padding: const EdgeInsets.only(top: 10.0),
@@ -82,7 +81,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   borderRadius: BorderRadius.circular(50),
                 ),
               ),
-              style: Theme.of(context).textTheme.bodyText2,
               obscureText: true,
             ),
           )
