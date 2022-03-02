@@ -2,14 +2,16 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:paradise/helpers/authentication.dart';
 import 'package:paradise/widgets/ParadiseLogo.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
+
+import 'HomeScreen.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _LoginScreenState();
 }
-
 
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailFilter = TextEditingController();
@@ -135,7 +137,21 @@ class _LoginScreenState extends State<LoginScreen> {
 
   // toggle between the two forms
   void _loginUser() async => Timer(const Duration(seconds: 3), () {
-        _loginBtnController.success();
+        AuthenticationHelper()
+            .signIn(email: _emailFilter.text, password: _passwordFilter.text)
+            .then((result) {
+          if (result == null) {
+            Navigator.pushReplacement(
+                context, MaterialPageRoute(builder: (context) => const HomeScreen()));
+          } else {
+            Scaffold.of(context).showSnackBar(SnackBar(
+              content: Text(
+                result,
+                style: TextStyle(fontSize: 16),
+              ),
+            ));
+          }
+        });
+        // _loginBtnController.success();
       });
-
 }
