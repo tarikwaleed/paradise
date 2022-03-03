@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:paradise/helpers/authentication.dart';
+import 'package:paradise/helpers/authentication_helper.dart';
 import 'package:paradise/widgets/ParadiseLogo.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 
@@ -112,7 +112,6 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  // These functions can self contain any user auth logic required, they all have access to _email and _password
 
   _LoginScreenState() {
     _emailFilter.addListener(_emailListen);
@@ -135,7 +134,6 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
-  // toggle between the two forms
   void _loginUser() async => Timer(const Duration(seconds: 3), () {
         AuthenticationHelper()
             .signIn(email: _emailFilter.text, password: _passwordFilter.text)
@@ -144,7 +142,7 @@ class _LoginScreenState extends State<LoginScreen> {
             Navigator.pushReplacement(
                 context, MaterialPageRoute(builder: (context) => const HomeScreen()));
           } else {
-            Scaffold.of(context).showSnackBar(SnackBar(
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               content: Text(
                 result,
                 style: TextStyle(fontSize: 16),

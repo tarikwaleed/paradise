@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 class AuthenticationHelper {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
+  // a getter method , its name is user and it returns the current signed-in user
   get user => _auth.currentUser;
 
   Future signIn({required String email, required String password}) async {
@@ -17,7 +18,6 @@ class AuthenticationHelper {
   //SIGN OUT METHOD
   Future signOut() async {
     await _auth.signOut();
-
     print('signout');
   }
 }
