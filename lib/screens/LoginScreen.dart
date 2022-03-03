@@ -14,6 +14,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  bool _isObscure = true;
   final TextEditingController _emailFilter = TextEditingController();
   final TextEditingController _passwordFilter = TextEditingController();
   final RoundedLoadingButtonController _loginBtnController =
@@ -67,7 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(50),
                 ),
-                hintText: 'الاسم او رقم التليفون'),
+                hintText: 'البريد الالكتروني'),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 10.0),
@@ -78,12 +79,22 @@ class _LoginScreenState extends State<LoginScreen> {
                   padding: const EdgeInsets.only(left: 12.0),
                   child: Icon(Icons.lock_rounded),
                 ),
+                suffixIcon: IconButton(
+                  icon: Icon(
+                      _isObscure ? Icons.visibility : Icons.visibility_off),
+                  onPressed: () {
+                    setState(() {
+                      _isObscure=!_isObscure;
+
+                    });
+                  },
+                ),
                 labelText: 'الرقم السري',
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(50),
                 ),
               ),
-              obscureText: true,
+              obscureText: _isObscure,
             ),
           )
         ],
@@ -112,7 +123,6 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-
   _LoginScreenState() {
     _emailFilter.addListener(_emailListen);
     _passwordFilter.addListener(_passwordListen);
@@ -139,8 +149,8 @@ class _LoginScreenState extends State<LoginScreen> {
             .signIn(email: _emailFilter.text, password: _passwordFilter.text)
             .then((result) {
           if (result == null) {
-            Navigator.pushReplacement(
-                context, MaterialPageRoute(builder: (context) => const HomeScreen()));
+            Navigator.pushReplacement(context,
+                MaterialPageRoute(builder: (context) => const HomeScreen()));
           } else {
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               content: Text(
