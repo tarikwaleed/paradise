@@ -17,7 +17,11 @@ class AuthenticationHelper {
 
   //SIGN OUT METHOD
   Future signOut() async {
-    await _auth.signOut();
-    print('signout');
+    try {
+      await _auth.signOut();
+      return null;
+    } on FirebaseAuthException catch (e) {
+      return e.message;
+    }
   }
 }

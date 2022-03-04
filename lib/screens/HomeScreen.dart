@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:paradise/helpers/authentication_helper.dart';
+import 'package:paradise/screens/LoginScreen.dart';
 
 class HomeScreen extends StatefulWidget {
   // use {} to define named parameters
@@ -13,7 +15,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
-  TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
     Text(
       'الرئيسية',
@@ -62,6 +64,40 @@ class _HomeScreenState extends State<HomeScreen> {
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.amber[800],
         onTap: _onItemTapped,
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            const DrawerHeader(
+              child: Text('خيارات'),
+              decoration: BoxDecoration(color: Colors.yellow),
+            ),
+            ListTile(
+              title: const Text(
+                'تسجيل الخروج',
+                style: TextStyle(
+                  color: Colors.red,
+                ),
+              ),
+              onTap: () {
+                AuthenticationHelper().signOut().then((value) {
+                  if (value == null) {
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) => LoginScreen()));
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text(
+                        value,
+                        style: TextStyle(fontSize: 16),
+                      ),
+                    ));
+                  }
+                });
+              },
+            )
+          ],
+        ),
       ),
     );
   }
