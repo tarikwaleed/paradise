@@ -66,7 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 labelText: 'اسم المستخدم',
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(50),
+                  borderRadius: BorderRadius.circular(5),
                 ),
                 hintText: 'البريد الالكتروني'),
           ),
@@ -84,14 +84,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       _isObscure ? Icons.visibility : Icons.visibility_off),
                   onPressed: () {
                     setState(() {
-                      _isObscure=!_isObscure;
-
+                      _isObscure = !_isObscure;
                     });
                   },
                 ),
                 labelText: 'الرقم السري',
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(50),
+                  borderRadius: BorderRadius.circular(5),
                 ),
               ),
               obscureText: _isObscure,
@@ -117,10 +116,12 @@ class _LoginScreenState extends State<LoginScreen> {
             duration: Duration(milliseconds: 1),
             completionDuration: Duration(milliseconds: 100),
             successColor: Colors.green,
+            borderRadius: 5,
           ),
         ),
       ],
     );
+    return ElevatedButton(onPressed: _loginUser, child: Text("دخول"));
   }
 
   _LoginScreenState() {
@@ -149,7 +150,7 @@ class _LoginScreenState extends State<LoginScreen> {
             .signIn(email: _emailFilter.text, password: _passwordFilter.text)
             .then((result) {
           if (result == null) {
-           Navigator.pushReplacement(context,
+            Navigator.pushReplacement(context,
                 MaterialPageRoute(builder: (context) => const HomeScreen()));
           } else {
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
