@@ -51,7 +51,7 @@ class ParadiseApp extends StatelessWidget {
           primarySwatch: Colors.yellow,
           textTheme: GoogleFonts.tajawalTextTheme(),
         ),
-        home: LoginScreen(),
+        home: Authenticate(),
       ),
     );
   }
