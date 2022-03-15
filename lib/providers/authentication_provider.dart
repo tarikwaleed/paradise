@@ -13,25 +13,12 @@ class AuthenticationProvider {
 
   //............RUDIMENTARY METHODS FOR AUTHENTICATION................
 
-  //SIGN UP METHOD
-  Future<String?> signUp(
-      {required String email, required String password}) async {
-    try {
-      await firebaseAuth.createUserWithEmailAndPassword(
-          email: email, password: password);
-      return "Signed up!";
-    } on FirebaseAuthException catch (e) {
-      return e.message;
-    }
-  }
-
-  //SIGN IN METHOD
   Future<String?> signIn(
       {required String email, required String password}) async {
     try {
       await firebaseAuth.signInWithEmailAndPassword(
           email: email, password: password);
-      return "Signed in!";
+      return null;
     } on FirebaseAuthException catch (e) {
       return e.message;
     }
