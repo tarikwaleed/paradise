@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:paradise/helpers/authentication_helper.dart';
 import 'package:paradise/screens/LoginScreen.dart';
+import 'package:paradise/screens/trips_list.dart';
 import 'package:paradise/shared_components/paradise_app_bar.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -18,12 +19,9 @@ class _HomeScreenState extends State<HomeScreen> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
+    TripsList(),
     Text(
-      'الرئيسية',
-      style: optionStyle,
-    ),
-    Text(
-      'الرحلات',
+      'الحسابات ',
       style: optionStyle,
     ),
     Text(
@@ -48,15 +46,15 @@ class _HomeScreenState extends State<HomeScreen> {
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'الرئيسية',
-          ),
-          BottomNavigationBarItem(
             icon: Icon(Icons.calendar_today),
             label: 'الرحلات',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.bus_alert),
+            icon: Icon(Icons.attach_money_sharp),
+            label: 'الحسابات',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.directions_bus_outlined),
             label: 'الباصات',
           ),
         ],
