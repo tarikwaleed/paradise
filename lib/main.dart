@@ -50,6 +50,8 @@ class ParadiseApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.yellow,
           textTheme: GoogleFonts.tajawalTextTheme(),
+
+
         ),
         home: Authenticate(),
       ),
