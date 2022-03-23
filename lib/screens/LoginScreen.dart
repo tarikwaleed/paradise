@@ -1,12 +1,10 @@
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:paradise/helpers/authentication_helper.dart';
 import 'package:paradise/providers/authentication_provider.dart';
-import 'package:paradise/widgets/ParadiseLogo.dart';
+import 'package:paradise/shared_components/ParadiseLogo.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
-import'package:provider/provider.dart';
+import 'package:provider/provider.dart';
 
 import 'HomeScreen.dart';
 
@@ -148,7 +146,8 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void _loginUser() async => Timer(const Duration(seconds: 3), () {
-        context.read<AuthenticationProvider>()
+        context
+            .read<AuthenticationProvider>()
             .signIn(email: _emailFilter.text, password: _passwordFilter.text)
             .then((result) {
           if (result == null) {

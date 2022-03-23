@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:paradise/helpers/authentication_helper.dart';
 import 'package:paradise/screens/LoginScreen.dart';
+import 'package:paradise/shared_components/paradise_app_bar.dart';
 
 class HomeScreen extends StatefulWidget {
   // use {} to define named parameters
@@ -40,9 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('باراديس'),
-      ),
+      appBar:const ParadiseAppBar(),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
