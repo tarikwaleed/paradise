@@ -30,15 +30,18 @@ class TripsList extends StatelessWidget {
             builder: (context, snapshot) {
               // <3> Retrieve `List<DocumentSnapshot>` from snapshot
               final List<DocumentSnapshot> documents = snapshot.data!.docs;
-              return ListView(
-                  children: documents
-                      .map((doc) => Card(
-                            child: ListTile(
-                              title: Text(doc['trip_name']),
-                              subtitle: Text((doc['duration']).toString()),
-                            ),
-                          ))
-                      .toList());
+              return Expanded(
+                child: ListView(
+
+                    children: documents
+                        .map((doc) => Card(
+                              child: ListTile(
+                                title: Text(doc['trip_name']),
+                                subtitle: Text((doc['duration']).toString()),
+                              ),
+                            ))
+                        .toList()),
+              );
             },
           )
         ],
