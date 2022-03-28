@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:paradise/constants.dart';
+import 'package:paradise/shared_components/trip_card.dart';
 
 class TripsList extends StatelessWidget {
   const TripsList({Key? key}) : super(key: key);
@@ -17,13 +18,19 @@ class TripsList extends StatelessWidget {
               SizedBox(
                 width: defaultPadding,
               ),
-              Text(
-                "الرحلات",
-                style: TextStyle(
-                  fontSize: 50,
-                )
-              ),
+              Text("الرحلات",
+                  style: TextStyle(
+                    fontSize: 50,
+                  )),
             ],
+          ),
+          Expanded(
+            child: ListView.builder(
+              itemCount: 2,
+              itemBuilder: (context, index) {
+                return TripCard();
+              },
+            ),
           ),
         ],
       ),
