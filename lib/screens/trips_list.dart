@@ -32,13 +32,10 @@ class TripsList extends StatelessWidget {
               final List<DocumentSnapshot> documents = snapshot.data!.docs;
               return Expanded(
                 child: ListView(
-
                     children: documents
-                        .map((doc) => Card(
-                              child: ListTile(
-                                title: Text(doc['trip_name']),
-                                subtitle: Text((doc['duration']).toString()),
-                              ),
+                        .map((doc) => TripCard(
+                              tripDuration: doc['duration'],
+                              tripName: doc['trip_name'],
                             ))
                         .toList()),
               );
