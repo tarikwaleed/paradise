@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:paradise/constants.dart';
+import 'dart:math' as math;
 
 class TripCard extends StatelessWidget {
   final String tripName;
@@ -18,6 +19,7 @@ class TripCard extends StatelessWidget {
       height: 200,
       width: double.maxFinite,
       child: Card(
+        color: Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0),
         elevation: 5,
         child: Column(
           children: <Widget>[
@@ -32,7 +34,7 @@ class TripCard extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 50,
                     fontWeight: FontWeight.bold,
-                    color: Colors.blueGrey,
+                    color: Colors.white70,
                   ),
                 ),
               ],
@@ -50,6 +52,7 @@ class TripCard extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.bold,
+                    color: Colors.white70,
                   ),
                 ),
                 SizedBox(
@@ -60,6 +63,7 @@ class TripCard extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.bold,
+                    color: Colors.white70,
                   ),
                 ),
               ],

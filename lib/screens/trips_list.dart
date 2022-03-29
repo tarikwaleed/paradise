@@ -3,8 +3,16 @@ import 'package:paradise/constants.dart';
 import 'package:paradise/shared_components/trip_card.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class TripsList extends StatelessWidget {
+class TripsList extends StatefulWidget {
   const TripsList({Key? key}) : super(key: key);
+
+  @override
+  State<TripsList> createState() => _TripsListState();
+}
+
+class _TripsListState extends State<TripsList> {
+  final Stream<QuerySnapshot> _tripsStream =
+      FirebaseFirestore.instance.collection('triips').snapshots();
 
   @override
   Widget build(BuildContext context) {
@@ -25,19 +33,22 @@ class TripsList extends StatelessWidget {
                   )),
             ],
           ),
-          StreamBuilder<QuerySnapshot?>(
-            stream: FirebaseFirestore.instance.collection('triips').snapshots(),
-            builder: (context, snapshot) {
-              // <3> Retrieve `List<DocumentSnapshot>` from snapshot
-              final List<DocumentSnapshot> documents = snapshot.data!.docs;
+          //todo: working on this part!
+          StreamBuilder<QuerySnapshot>(
+            stream: _tripsStream,
+            builder:
+                (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
               return Expanded(
                 child: ListView(
-                    children: documents
-                        .map((doc) => TripCard(
-                              tripDuration: doc['duration'],
-                              tripName: doc['trip_name'],
-                            ))
-                        .toList()),
+                  children:
+                      snapshot.data!.docs.map((DocumentSnapshot document) {
+                    Map<String, dynamic> data =
+                        document.data()! as Map<String, dynamic>;
+                    return TripCard(
+                        tripName: data['trip_name'],
+                        tripDuration: data['duration']);
+                  }).toList(),
+                ),
               );
             },
           )
