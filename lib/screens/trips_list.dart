@@ -39,14 +39,17 @@ class _TripsListState extends State<TripsList> {
             builder:
                 (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
               return Expanded(
+                flex: 3,
                 child: ListView(
                   children:
                       snapshot.data!.docs.map((DocumentSnapshot document) {
                     Map<String, dynamic> data =
                         document.data()! as Map<String, dynamic>;
                     return TripCard(
-                        tripName: data['trip_name'],
-                        tripDuration: data['duration']);
+                      tripName: data['trip_name'],
+                      tripDuration: data['duration'],
+                      total_number_of_rooms: data['total_number_of_rooms'],
+                    );
                   }).toList(),
                 ),
               );

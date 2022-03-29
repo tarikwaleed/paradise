@@ -5,26 +5,58 @@ import 'dart:math' as math;
 class TripCard extends StatelessWidget {
   final String tripName;
   final int tripDuration;
+  final int total_number_of_rooms;
 
   const TripCard({
     Key? key,
     required this.tripName,
     required this.tripDuration,
+    required this.total_number_of_rooms,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-      height: 200,
+      height: 240,
       width: double.maxFinite,
       child: Card(
-        color: Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0),
+        // color: Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0),
         elevation: 5,
         child: Column(
           children: <Widget>[
             SizedBox(
               height: 20,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                SizedBox(
+                  width: 20,
+                ),
+                CircleAvatar(
+                  backgroundColor: total_number_of_rooms==0?Colors.redAccent:Colors.yellow,
+                  radius: 25,
+                  child: Text(
+                    total_number_of_rooms.toString(),
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            Row(
+              children: [
+                SizedBox(
+                  width: 27,
+                ),
+                Text("غرفة"),
+              ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -34,13 +66,13 @@ class TripCard extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 50,
                     fontWeight: FontWeight.bold,
-                    color: Colors.white70,
+                    color: Colors.blueGrey,
                   ),
                 ),
               ],
             ),
             SizedBox(
-              height: 20,
+              height: 10,
             ),
             Row(
               children: [
@@ -52,7 +84,7 @@ class TripCard extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.bold,
-                    color: Colors.white70,
+                    color: Colors.yellow,
                   ),
                 ),
                 SizedBox(
@@ -63,7 +95,7 @@ class TripCard extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.bold,
-                    color: Colors.white70,
+                    color: Colors.blueGrey,
                   ),
                 ),
               ],
