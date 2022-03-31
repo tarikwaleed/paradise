@@ -17,6 +17,8 @@ class _TripsListState extends State<TripsList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //todo: this Column must be refactored because it's causing a bunch of rendering errors
+      // try using SliverList or something like that
       body: Column(
         children: [
           SizedBox(
@@ -33,7 +35,6 @@ class _TripsListState extends State<TripsList> {
                   )),
             ],
           ),
-          //todo: working on this part!
           StreamBuilder<QuerySnapshot>(
             stream: _tripsStream,
             builder:

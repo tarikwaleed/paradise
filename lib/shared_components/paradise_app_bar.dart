@@ -19,7 +19,6 @@ class ParadiseAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  // TODO: implement preferredSize
   // Dunno why .. but i cannot implement the class without this override
   Size get preferredSize => this.preferedSize;
 }
