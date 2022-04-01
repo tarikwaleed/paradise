@@ -1,26 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:paradise/constants.dart';
+import 'package:paradise/screens/trip_details.dart';
 import 'dart:math' as math;
 
 import '../screens/HomeScreen.dart';
 
 class TripCard extends StatelessWidget {
   final String tripName;
-  final int tripDuration;
-  final int total_number_of_rooms;
+  final int duration;
+  final int totalNumberOfRooms;
 
   const TripCard({
     Key? key,
     required this.tripName,
-    required this.tripDuration,
-    required this.total_number_of_rooms,
+    required this.duration,
+    required this.totalNumberOfRooms,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => const HomeScreen())),
+          context,
+          MaterialPageRoute(
+              builder: (context) => TripDetails(
+                  tripName: tripName,
+                  duration: duration,
+                  totalNumberOfRooms: totalNumberOfRooms))),
       child: Container(
         padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
         height: 240,
@@ -40,12 +46,12 @@ class TripCard extends StatelessWidget {
                     width: 20,
                   ),
                   CircleAvatar(
-                    backgroundColor: total_number_of_rooms == 0
+                    backgroundColor: totalNumberOfRooms == 0
                         ? Colors.redAccent
                         : Colors.yellow,
                     radius: 25,
                     child: Text(
-                      total_number_of_rooms.toString(),
+                      totalNumberOfRooms.toString(),
                       style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
@@ -87,7 +93,7 @@ class TripCard extends StatelessWidget {
                     width: defaultPadding * 7,
                   ),
                   Text(
-                    tripDuration.toString(),
+                    duration.toString(),
                     style: TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.bold,

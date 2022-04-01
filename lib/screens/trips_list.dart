@@ -48,8 +48,8 @@ class _TripsListState extends State<TripsList> {
                         document.data()! as Map<String, dynamic>;
                     return TripCard(
                       tripName: data['trip_name'],
-                      tripDuration: data['duration'],
-                      total_number_of_rooms: data['total_number_of_rooms'],
+                      duration: data['duration'],
+                      totalNumberOfRooms: data['total_number_of_rooms'],
                     );
                   }).toList(),
                 ),

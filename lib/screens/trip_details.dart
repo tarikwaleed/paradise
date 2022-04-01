@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class TripDetails extends StatefulWidget {
+class TripDetails extends StatelessWidget {
   final String tripName;
   final int duration;
   final int totalNumberOfRooms;
@@ -13,12 +13,16 @@ class TripDetails extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<TripDetails> createState() => _TripDetailsState();
-}
-
-class _TripDetailsState extends State<TripDetails> {
-  @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            title: Text(tripName),
+            centerTitle: true,
+          ),
+        ],
+      ),
+    );
   }
 }
