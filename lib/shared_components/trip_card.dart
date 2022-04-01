@@ -19,9 +19,8 @@ class TripCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () =>
-        Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (context) => const HomeScreen())),
+      onTap: () => Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => const HomeScreen())),
       child: Container(
         padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
         height: 240,
@@ -41,7 +40,9 @@ class TripCard extends StatelessWidget {
                     width: 20,
                   ),
                   CircleAvatar(
-                    backgroundColor: total_number_of_rooms==0?Colors.redAccent:Colors.yellow,
+                    backgroundColor: total_number_of_rooms == 0
+                        ? Colors.redAccent
+                        : Colors.yellow,
                     radius: 25,
                     child: Text(
                       total_number_of_rooms.toString(),
