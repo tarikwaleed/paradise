@@ -4,6 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:paradise/providers/authentication_provider.dart';
 import 'package:paradise/screens/HomeScreen.dart';
+import 'package:paradise/screens/trips_list.dart';
 import 'package:provider/provider.dart';
 import 'screens/LoginScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -67,7 +68,7 @@ class Authenticate extends StatelessWidget {
 
     if (firebaseUser != null) {
       //Means that the user is logged in already and hence navigate to HomePage
-      return HomeScreen();
+      return TripsList();
     }
     //The user isn't logged in and hence navigate to SignInPage.
     return LoginScreen();
