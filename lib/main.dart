@@ -68,7 +68,7 @@ class Authenticate extends StatelessWidget {
 
     if (firebaseUser != null) {
       //Means that the user is logged in already and hence navigate to HomePage
-      return TripsList();
+      return HomeScreen();
     }
     //The user isn't logged in and hence navigate to SignInPage.
     return LoginScreen();
