@@ -39,6 +39,12 @@ class _TripsListState extends State<TripsList> {
             stream: _tripsStream,
             builder:
                 (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+              if (snapshot.hasError) {
+                return const Text("something went wrong");
+              }
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Text("Loading");
+              }
               return Expanded(
                 flex: 3,
                 child: ListView(

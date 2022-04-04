@@ -1,5 +1,5 @@
+
 import 'package:flutter/material.dart';
-import 'package:paradise/shared_components/paradise_app_bar.dart';
 
 class TripDetails extends StatelessWidget {
   final String tripName;
