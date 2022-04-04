@@ -17,6 +17,12 @@ class TripDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: GestureDetector(
+          child: Icon(Icons.arrow_back),
+          onTap: () {
+            Navigator.pop(context);
+          },
+        ),
         toolbarHeight: 100,
         title: Text("رحلة " + tripName),
         centerTitle: true,
@@ -32,7 +38,10 @@ class TripDetails extends StatelessWidget {
                   style: TextStyle(
                       color: Colors.white, fontWeight: FontWeight.bold),
                 ),
-                Text("ليالي",style: TextStyle(color: Colors.white),),
+                Text(
+                  "ليالي",
+                  style: TextStyle(color: Colors.white),
+                ),
               ],
             ),
             backgroundColor: Colors.blue,
