@@ -23,7 +23,7 @@ class HotelCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-      height: 240,
+      height: 170,
       width: double.maxFinite,
       child: Card(
         // color: Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0),
@@ -52,6 +52,17 @@ class HotelCard extends StatelessWidget {
                     ),
                   ),
                 ),
+                SizedBox(
+                  width: 20,
+                ),
+                Text(
+                  hotelName,
+                  style: TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.blueGrey,
+                  ),
+                ),
               ],
             ),
             SizedBox(
@@ -68,14 +79,6 @@ class HotelCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  hotelName,
-                  style: TextStyle(
-                    fontSize: 50,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.blueGrey,
-                  ),
-                ),
               ],
             ),
             SizedBox(
