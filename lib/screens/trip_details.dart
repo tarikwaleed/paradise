@@ -22,9 +22,11 @@ class TripDetails extends StatefulWidget {
 class _TripDetailsState extends State<TripDetails> {
   @override
   Widget build(BuildContext context) {
-    Stream<DocumentSnapshot> hotelOneStream =
-        widget.availableHotels[0].snapshots();
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.calendar_today),
+        onPressed: () {},
+      ),
       appBar: AppBar(
         leading: GestureDetector(
           child: Icon(Icons.arrow_back),
@@ -84,56 +86,39 @@ class _TripDetailsState extends State<TripDetails> {
           )
         ],
       ),
-      body: ListView(
+      body: Column(
         children: [
-          StreamBuilder<DocumentSnapshot>(
-            stream: widget.availableHotels[0].snapshots(),
-            builder: (BuildContext context,
-                AsyncSnapshot<DocumentSnapshot> snapshot) {
-              return Text("Hotel Name: ${snapshot.data!['hotel_name']} ");
-            },
+          SizedBox(
+            height: 50,
           ),
-          // FutureBuilder<DocumentSnapshot>(
-          //   future: widget.availableHotels[0].get(),
-          //   builder: (BuildContext context,
-          //       AsyncSnapshot<DocumentSnapshot> snapshot) {
-          //     if (snapshot.hasError) {
-          //       return Text("Something went wrong");
-          //     }
-          //
-          //     if (snapshot.hasData && !snapshot.data!.exists) {
-          //       return Text("Document does not exist");
-          //     }
-          //
-          //     if (snapshot.connectionState == ConnectionState.done) {
-          //       Map<String, dynamic> data =
-          //           snapshot.data!.data() as Map<String, dynamic>;
-          //       return Text(
-          //           "Hotel Name: ${data['hotel_name']} ");
-          //     }
-          //
-          //     return Text("loading");
-          //   },
-          // )
-          //
-          // SizedBox(
-          //   height: 40,
-          // ),
-          // Padding(
-          //   padding: const EdgeInsets.only(right: 20.0),
-          //   child: Align(
-          //     alignment: Alignment.topRight,
-          //     child: Text(
-          //       "الفنادق المتاحة",
-          //       style: TextStyle(
-          //         fontSize: 40,
-          //         fontWeight: FontWeight.bold,
-          //       ),
-          //     ),
-          //   ),
-          // ),
+          Text(
+            "الفنادق المتاحة",
+            style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
+          ),
+          Expanded(
+            child: ListView.builder(
+                itemCount: widget.availableHotels.length,
+                itemBuilder: (context, index) {
+                  return _buildHotel(widget.availableHotels[index]);
+                }),
+          ),
         ],
       ),
+    );
+  }
+
+  Widget _buildHotel(DocumentReference hotelReference) {
+    return StreamBuilder<DocumentSnapshot>(
+      stream: hotelReference.snapshots(),
+      builder:
+          (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+        String hotelName = snapshot.data?['hotel_name'] ?? "";
+        int hotelNumberOfRooms = snapshot.data?['number_of_rooms'] ?? 0;
+        return ListTile(
+          title: Text("$hotelName "),
+          subtitle: Text("$hotelNumberOfRooms"),
+        );
+      },
     );
   }
 }
