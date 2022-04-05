@@ -30,6 +30,7 @@ class _TripDetailsState extends State<TripDetails> {
         onPressed: () {},
       ),
       appBar: AppBar(
+        backgroundColor: Colors.white70 ,
         leading: GestureDetector(
           child: Icon(Icons.arrow_back),
           onTap: () {
@@ -49,15 +50,15 @@ class _TripDetailsState extends State<TripDetails> {
                 Text(
                   widget.duration.toString(),
                   style: TextStyle(
-                      color: Colors.white, fontWeight: FontWeight.bold),
+                      color: Colors.black, fontWeight: FontWeight.bold),
                 ),
                 Text(
                   "ليالي",
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(color: Colors.black),
                 ),
               ],
             ),
-            backgroundColor: Colors.blue,
+            backgroundColor: Colors.yellow,
           ),
           SizedBox(
             width: 8,
@@ -65,19 +66,19 @@ class _TripDetailsState extends State<TripDetails> {
           // Duration
           CircleAvatar(
             radius: 25,
-            backgroundColor: Colors.blueGrey,
+            backgroundColor: Colors.yellow,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
                   widget.totalNumberOfRooms.toString(),
                   style: TextStyle(
-                      color: Colors.white, fontWeight: FontWeight.bold),
+                      color: Colors.black, fontWeight: FontWeight.bold),
                 ),
                 Text(
                   "غرف",
                   style: TextStyle(
-                    color: Colors.white,
+                    color: Colors.black,
                   ),
                 )
               ],
