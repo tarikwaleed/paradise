@@ -1,20 +1,29 @@
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-class TripDetails extends StatelessWidget {
+class TripDetails extends StatefulWidget {
   final String tripName;
   final int duration;
   final int totalNumberOfRooms;
+  final List<dynamic> availableHotels;
 
-  const TripDetails({
-    Key? key,
-    required this.tripName,
-    required this.duration,
-    required this.totalNumberOfRooms,
-  }) : super(key: key);
+  const TripDetails(
+      {Key? key,
+      required this.tripName,
+      required this.duration,
+      required this.totalNumberOfRooms,
+      required this.availableHotels})
+      : super(key: key);
 
   @override
+  State<TripDetails> createState() => _TripDetailsState();
+}
+
+class _TripDetailsState extends State<TripDetails> {
+  @override
   Widget build(BuildContext context) {
+    Stream<DocumentSnapshot> hotelOneStream =
+        widget.availableHotels[0].snapshots();
     return Scaffold(
       appBar: AppBar(
         leading: GestureDetector(
@@ -24,7 +33,7 @@ class TripDetails extends StatelessWidget {
           },
         ),
         toolbarHeight: 100,
-        title: Text("رحلة " + tripName),
+        title: Text("رحلة " + widget.tripName),
         centerTitle: true,
         actions: [
           // Total Number Of Rooms
@@ -34,7 +43,7 @@ class TripDetails extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  duration.toString(),
+                  widget.duration.toString(),
                   style: TextStyle(
                       color: Colors.white, fontWeight: FontWeight.bold),
                 ),
@@ -57,7 +66,7 @@ class TripDetails extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  totalNumberOfRooms.toString(),
+                  widget.totalNumberOfRooms.toString(),
                   style: TextStyle(
                       color: Colors.white, fontWeight: FontWeight.bold),
                 ),
@@ -77,19 +86,52 @@ class TripDetails extends StatelessWidget {
       ),
       body: ListView(
         children: [
-          SizedBox(
-            height: 40,
+          StreamBuilder<DocumentSnapshot>(
+            stream: widget.availableHotels[0].snapshots(),
+            builder: (BuildContext context,
+                AsyncSnapshot<DocumentSnapshot> snapshot) {
+              return Text("Hotel Name: ${snapshot.data!['hotel_name']} ");
+            },
           ),
-          Padding(
-            padding: const EdgeInsets.only(right: 20.0),
-            child: Text(
-              "الفنادق المتاحة",
-              style: TextStyle(
-                fontSize: 40,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          )
+          // FutureBuilder<DocumentSnapshot>(
+          //   future: widget.availableHotels[0].get(),
+          //   builder: (BuildContext context,
+          //       AsyncSnapshot<DocumentSnapshot> snapshot) {
+          //     if (snapshot.hasError) {
+          //       return Text("Something went wrong");
+          //     }
+          //
+          //     if (snapshot.hasData && !snapshot.data!.exists) {
+          //       return Text("Document does not exist");
+          //     }
+          //
+          //     if (snapshot.connectionState == ConnectionState.done) {
+          //       Map<String, dynamic> data =
+          //           snapshot.data!.data() as Map<String, dynamic>;
+          //       return Text(
+          //           "Hotel Name: ${data['hotel_name']} ");
+          //     }
+          //
+          //     return Text("loading");
+          //   },
+          // )
+          //
+          // SizedBox(
+          //   height: 40,
+          // ),
+          // Padding(
+          //   padding: const EdgeInsets.only(right: 20.0),
+          //   child: Align(
+          //     alignment: Alignment.topRight,
+          //     child: Text(
+          //       "الفنادق المتاحة",
+          //       style: TextStyle(
+          //         fontSize: 40,
+          //         fontWeight: FontWeight.bold,
+          //       ),
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     );

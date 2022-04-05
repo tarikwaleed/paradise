@@ -56,6 +56,7 @@ class _TripsListState extends State<TripsList> {
                       tripName: data['trip_name'],
                       duration: data['duration'],
                       totalNumberOfRooms: data['total_number_of_rooms'],
+                      availableHotels: data['available_hotels']??[],
                     );
                   }).toList(),
                 ),

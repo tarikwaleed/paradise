@@ -9,10 +9,12 @@ class TripCard extends StatelessWidget {
   final String tripName;
   final int duration;
   final int totalNumberOfRooms;
+  final List<dynamic> availableHotels;
 
   const TripCard({
     Key? key,
     required this.tripName,
+    required this.availableHotels,
     required this.duration,
     required this.totalNumberOfRooms,
   }) : super(key: key);
@@ -26,6 +28,7 @@ class TripCard extends StatelessWidget {
               builder: (context) => TripDetails(
                   tripName: tripName,
                   duration: duration,
+                  availableHotels: availableHotels,
                   totalNumberOfRooms: totalNumberOfRooms))),
       child: Container(
         padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
