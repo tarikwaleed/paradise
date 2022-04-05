@@ -25,10 +25,6 @@ class _TripDetailsState extends State<TripDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.calendar_today),
-        onPressed: () {},
-      ),
       appBar: AppBar(
         backgroundColor: Colors.white70 ,
         leading: GestureDetector(
@@ -123,6 +119,7 @@ class _TripDetailsState extends State<TripDetails> {
           numberOfRooms: numberOfRooms,
           nightPricePerPerson: nightPricePerPerson,
           tripDuration: widget.duration,
+          tripName: widget.tripName,
         );
       },
     );
