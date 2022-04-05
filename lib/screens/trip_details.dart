@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:paradise/shared_components/hotel_card.dart';
 
 class TripDetails extends StatefulWidget {
   final String tripName;
@@ -113,10 +115,13 @@ class _TripDetailsState extends State<TripDetails> {
       builder:
           (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
         String hotelName = snapshot.data?['hotel_name'] ?? "";
-        int hotelNumberOfRooms = snapshot.data?['number_of_rooms'] ?? 0;
-        return ListTile(
-          title: Text("$hotelName "),
-          subtitle: Text("$hotelNumberOfRooms"),
+        int numberOfRooms = snapshot.data?['number_of_rooms'] ?? 0;
+        int nightPricePerPerson = snapshot.data?['night_price_per_person'] ?? 0;
+        return HotelCard(
+          hotelName: hotelName,
+          numberOfRooms: numberOfRooms,
+          nightPricePerPerson: nightPricePerPerson,
+          tripDuration: widget.duration,
         );
       },
     );
