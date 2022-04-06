@@ -4,12 +4,12 @@ import 'package:flutter/services.dart';
 
 enum RoomTypes { single, double, triple }
 
-class ReservationScreen extends StatefulWidget {
+class NumberOfRoomsScreen extends StatefulWidget {
   final String tripName;
   final int tripDuration;
   final int nightPricePerPerson;
 
-  const ReservationScreen({
+  const NumberOfRoomsScreen({
     Key? key,
     required this.tripName,
     required this.tripDuration,
@@ -17,10 +17,10 @@ class ReservationScreen extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<ReservationScreen> createState() => _ReservationScreenState();
+  State<NumberOfRoomsScreen> createState() => _NumberOfRoomsScreenState();
 }
 
-class _ReservationScreenState extends State<ReservationScreen> {
+class _NumberOfRoomsScreenState extends State<NumberOfRoomsScreen> {
   final _formKey = GlobalKey<FormState>();
   RoomTypes? _roomType = RoomTypes.single;
 
@@ -42,17 +42,20 @@ class _ReservationScreenState extends State<ReservationScreen> {
                   height: 50,
                 ),
                 const Text(
-                  "بيانات الغرف",
+                  "عدد الغرف",
                   style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(
-                  height: 20,
+                  height: 30,
                 ),
                 TextFormField(
+
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 160,fontWeight: FontWeight.bold),
                   keyboardType: TextInputType.number,
                   decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'عدد الغرف',
+                    border: UnderlineInputBorder(),
+
                   ),
                   onChanged: (numberOfRooms) {},
                   validator: (value) {
@@ -62,10 +65,6 @@ class _ReservationScreenState extends State<ReservationScreen> {
                     return null;
                   },
                 ),
-                SizedBox(
-                  height: 20,
-                ),
-                _buildRoomTypeRadioButtons(),
               ],
             ),
           ),
