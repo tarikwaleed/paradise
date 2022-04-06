@@ -49,13 +49,11 @@ class _NumberOfRoomsScreenState extends State<NumberOfRoomsScreen> {
                   height: 30,
                 ),
                 TextFormField(
-
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 160,fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 160, fontWeight: FontWeight.bold),
                   keyboardType: TextInputType.number,
                   decoration: const InputDecoration(
                     border: UnderlineInputBorder(),
-
                   ),
                   onChanged: (numberOfRooms) {},
                   validator: (value) {
@@ -65,6 +63,19 @@ class _NumberOfRoomsScreenState extends State<NumberOfRoomsScreen> {
                     return null;
                   },
                 ),
+                SizedBox(
+                  height: 130,
+                ),
+                ElevatedButton(
+                  onPressed: () {},
+                  child: Text(
+                    "التالي",
+                    style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    fixedSize: const Size(280, 50),
+                  ),
+                )
               ],
             ),
           ),
