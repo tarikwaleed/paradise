@@ -21,7 +21,9 @@ class ReservationScreen extends StatefulWidget {
 }
 
 class _ReservationScreenState extends State<ReservationScreen> {
-  RoomTypes? _roomType=RoomTypes.single;
+  final _formKey = GlobalKey<FormState>();
+  RoomTypes? _roomType = RoomTypes.single;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,36 +32,42 @@ class _ReservationScreenState extends State<ReservationScreen> {
         centerTitle: true,
         backgroundColor: Colors.white70,
       ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 50,
-              ),
-              const Text(
-                "بيانات الغرف",
-                style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              TextFormField(
-                keyboardType: TextInputType.number,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'عدد الغرف',
+      body: Form(
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 50,
                 ),
-                onChanged: (numberOfRooms){
-
-                },
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              _buildRoomTypeRadioButtons(),
-            ],
+                const Text(
+                  "بيانات الغرف",
+                  style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                TextFormField(
+                  keyboardType: TextInputType.number,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'عدد الغرف',
+                  ),
+                  onChanged: (numberOfRooms) {},
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter some text';
+                    }
+                    return null;
+                  },
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                _buildRoomTypeRadioButtons(),
+              ],
+            ),
           ),
         ),
       ),
