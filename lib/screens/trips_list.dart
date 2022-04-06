@@ -3,6 +3,7 @@ import 'package:paradise/constants.dart';
 import 'package:paradise/shared_components/trip_card.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+// continue working with this branch ! make it your default branch!!
 class TripsList extends StatefulWidget {
   const TripsList({Key? key}) : super(key: key);
 
