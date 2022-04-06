@@ -26,64 +26,15 @@ class _TripDetailsState extends State<TripDetails> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white70 ,
+        backgroundColor: Colors.white70,
         leading: GestureDetector(
           child: Icon(Icons.arrow_back),
           onTap: () {
             Navigator.pop(context);
           },
         ),
-        toolbarHeight: 100,
         title: Text("رحلة " + widget.tripName),
         centerTitle: true,
-        actions: [
-          // Total Number Of Rooms
-          CircleAvatar(
-            radius: 25,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  widget.duration.toString(),
-                  style: TextStyle(
-                      color: Colors.black, fontWeight: FontWeight.bold),
-                ),
-                Text(
-                  "ليالي",
-                  style: TextStyle(color: Colors.black),
-                ),
-              ],
-            ),
-            backgroundColor: Colors.yellow,
-          ),
-          SizedBox(
-            width: 8,
-          ),
-          // Duration
-          CircleAvatar(
-            radius: 25,
-            backgroundColor: Colors.yellow,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  widget.totalNumberOfRooms.toString(),
-                  style: TextStyle(
-                      color: Colors.black, fontWeight: FontWeight.bold),
-                ),
-                Text(
-                  "غرف",
-                  style: TextStyle(
-                    color: Colors.black,
-                  ),
-                )
-              ],
-            ),
-          ),
-          SizedBox(
-            width: 8,
-          )
-        ],
       ),
       body: Column(
         children: [
