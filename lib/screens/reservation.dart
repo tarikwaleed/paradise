@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+enum RoomTypes { single, double, triple }
+
 class ReservationScreen extends StatefulWidget {
   final String tripName;
   final int tripDuration;
@@ -19,6 +21,7 @@ class ReservationScreen extends StatefulWidget {
 }
 
 class _ReservationScreenState extends State<ReservationScreen> {
+  RoomTypes? _roomType=RoomTypes.single;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +34,7 @@ class _ReservationScreenState extends State<ReservationScreen> {
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(
-            children:  [
+            children: [
               const SizedBox(
                 height: 50,
               ),
@@ -43,19 +46,61 @@ class _ReservationScreenState extends State<ReservationScreen> {
                 height: 20,
               ),
               TextFormField(
+                keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
-                  border:OutlineInputBorder() ,
+                  border: OutlineInputBorder(),
                   labelText: 'عدد الغرف',
                 ),
+                onChanged: (numberOfRooms){
+
+                },
               ),
               SizedBox(
                 height: 20,
               ),
-
+              _buildRoomTypeRadioButtons(),
             ],
           ),
         ),
       ),
     );
+  }
+
+  Widget _buildRoomTypeRadioButtons() {
+    return Expanded(
+        child: ListView(
+      children: [
+        RadioListTile<RoomTypes>(
+          title: const Text('سنجل'),
+          value: RoomTypes.single,
+          groupValue: _roomType,
+          onChanged: (RoomTypes? value) {
+            setState(() {
+              _roomType = value;
+            });
+          },
+        ),
+        RadioListTile<RoomTypes>(
+          title: const Text('دبل'),
+          value: RoomTypes.double,
+          groupValue: _roomType,
+          onChanged: (RoomTypes? value) {
+            setState(() {
+              _roomType = value;
+            });
+          },
+        ),
+        RadioListTile<RoomTypes>(
+          title: const Text('تربل'),
+          value: RoomTypes.triple,
+          groupValue: _roomType,
+          onChanged: (RoomTypes? value) {
+            setState(() {
+              _roomType = value;
+            });
+          },
+        ),
+      ],
+    ));
   }
 }
