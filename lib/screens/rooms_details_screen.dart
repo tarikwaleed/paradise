@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:paradise/helpers/room_type_radio.dart';
 
 class RoomsDetailsScreen extends StatefulWidget {
   final int numberOfRooms;
@@ -19,26 +20,44 @@ class _RoomsDetailsScreenState extends State<RoomsDetailsScreen> {
         body: Center(
       child: Padding(
         padding: const EdgeInsets.all(20.0),
-        child: Column(
-          children: [
-            SizedBox(
-              height: 30,
+        child: Center(
+          child: Expanded(
+            child: ListView(
+              children: <Widget>[
+                SizedBox(
+                  height: 30,
+                ),
+                Text(
+                  "تفاصيل الغرف",
+                  style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                ..._buildRadios(widget.numberOfRooms)
+              ],
             ),
-            Text(
-              "تفاصيل الغرف",
-              style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(
-              height: 30,
-            ),
-            Text(
-              "${widget.numberOfRooms}",
-              style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
-            ),
-
-          ],
+          ),
         ),
       ),
     ));
+  }
+
+  List<Widget> _buildRadios(int numberOfRooms) {
+    List<Widget> radios = [];
+    for (int i = 1; i <= numberOfRooms; i++) {
+      radios.add(Text(
+        "نوع الغرفه ${i}",
+        style: TextStyle(
+          fontSize: 20,
+          color: Colors.blue,
+        ),
+      ));
+      radios.add(RoomTypeRadio());
+      radios.add(SizedBox(
+        height: 20,
+      ));
+    }
+    return radios;
   }
 }

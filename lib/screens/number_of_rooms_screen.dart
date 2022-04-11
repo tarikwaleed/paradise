@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:paradise/screens/rooms_details_screen.dart';
 
-enum RoomTypes { single, double, triple }
 
 class NumberOfRoomsScreen extends StatefulWidget {
   final String tripName;
@@ -23,7 +22,6 @@ class NumberOfRoomsScreen extends StatefulWidget {
 
 class _NumberOfRoomsScreenState extends State<NumberOfRoomsScreen> {
   final TextEditingController _numberOfRoomsFilter = TextEditingController();
-  RoomTypes? _roomType = RoomTypes.single;
 
   @override
   Widget build(BuildContext context) {
@@ -86,41 +84,4 @@ class _NumberOfRoomsScreenState extends State<NumberOfRoomsScreen> {
     );
   }
 
-  Widget _buildRoomTypeRadioButtons() {
-    return Expanded(
-        child: ListView(
-      children: [
-        RadioListTile<RoomTypes>(
-          title: const Text('سنجل'),
-          value: RoomTypes.single,
-          groupValue: _roomType,
-          onChanged: (RoomTypes? value) {
-            setState(() {
-              _roomType = value;
-            });
-          },
-        ),
-        RadioListTile<RoomTypes>(
-          title: const Text('دبل'),
-          value: RoomTypes.double,
-          groupValue: _roomType,
-          onChanged: (RoomTypes? value) {
-            setState(() {
-              _roomType = value;
-            });
-          },
-        ),
-        RadioListTile<RoomTypes>(
-          title: const Text('تربل'),
-          value: RoomTypes.triple,
-          groupValue: _roomType,
-          onChanged: (RoomTypes? value) {
-            setState(() {
-              _roomType = value;
-            });
-          },
-        ),
-      ],
-    ));
-  }
 }
