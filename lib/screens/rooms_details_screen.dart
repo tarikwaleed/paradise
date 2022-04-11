@@ -17,30 +17,30 @@ class _RoomsDetailsScreenState extends State<RoomsDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Center(
-      child: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Center(
-          child: Expanded(
-            child: ListView(
-              children: <Widget>[
-                SizedBox(
-                  height: 30,
+        body: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            children: [
+              Expanded(
+                child: ListView(
+                  children: <Widget>[
+                    SizedBox(
+                      height: 30,
+                    ),
+                    Text(
+                      "تفاصيل الغرف",
+                      style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    ..._buildRadios(widget.numberOfRooms)
+                  ],
                 ),
-                Text(
-                  "تفاصيل الغرف",
-                  style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
-                ),
-                SizedBox(
-                  height: 30,
-                ),
-                ..._buildRadios(widget.numberOfRooms)
-              ],
-            ),
+              ),
+            ],
           ),
-        ),
-      ),
-    ));
+        ));
   }
 
   List<Widget> _buildRadios(int numberOfRooms) {
