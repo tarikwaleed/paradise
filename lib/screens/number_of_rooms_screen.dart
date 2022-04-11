@@ -23,7 +23,6 @@ class NumberOfRoomsScreen extends StatefulWidget {
 
 class _NumberOfRoomsScreenState extends State<NumberOfRoomsScreen> {
   final TextEditingController _numberOfRoomsFilter = TextEditingController();
-  final _numberOfRoomsFormKey = GlobalKey<FormState>();
   RoomTypes? _roomType = RoomTypes.single;
 
   @override
