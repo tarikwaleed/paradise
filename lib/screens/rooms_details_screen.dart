@@ -17,6 +17,11 @@ class _RoomsDetailsScreenState extends State<RoomsDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          title: Text("تفاصيل الغرف"),
+          centerTitle: true,
+          backgroundColor: Colors.white70,
+        ),
         body: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(
@@ -27,14 +32,31 @@ class _RoomsDetailsScreenState extends State<RoomsDetailsScreen> {
                     SizedBox(
                       height: 30,
                     ),
-                    Text(
-                      "تفاصيل الغرف",
-                      style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
-                    ),
+                    ..._buildRadios(widget.numberOfRooms),
                     SizedBox(
                       height: 30,
                     ),
-                    ..._buildRadios(widget.numberOfRooms)
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "10,000",
+                          style:
+                              TextStyle(fontSize: 80, fontWeight: FontWeight.bold,),
+                        ),
+                      ],
+                    ),
+                    ElevatedButton(
+                      child: Text(
+                        "التالي",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 20),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        fixedSize: const Size(280, 50),
+                      ),
+                      onPressed: () {},
+                    ),
                   ],
                 ),
               ),
