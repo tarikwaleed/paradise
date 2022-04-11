@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:paradise/screens/rooms_details_screen.dart';
 
 enum RoomTypes { single, double, triple }
 
@@ -21,7 +22,8 @@ class NumberOfRoomsScreen extends StatefulWidget {
 }
 
 class _NumberOfRoomsScreenState extends State<NumberOfRoomsScreen> {
-  final _formKey = GlobalKey<FormState>();
+  final TextEditingController _numberOfRoomsFilter = TextEditingController();
+  final _numberOfRoomsFormKey = GlobalKey<FormState>();
   RoomTypes? _roomType = RoomTypes.single;
 
   @override
@@ -49,33 +51,34 @@ class _NumberOfRoomsScreenState extends State<NumberOfRoomsScreen> {
                   height: 30,
                 ),
                 TextFormField(
+                  controller: _numberOfRoomsFilter,
+                  textInputAction: TextInputAction.done,
+                  keyboardType: TextInputType.number,
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 160, fontWeight: FontWeight.bold),
-                  keyboardType: TextInputType.number,
                   decoration: const InputDecoration(
                     border: UnderlineInputBorder(),
                   ),
-                  onChanged: (numberOfRooms) {},
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter some text';
-                    }
-                    return null;
-                  },
                 ),
                 SizedBox(
                   height: 130,
                 ),
                 ElevatedButton(
-                  onPressed: () {},
                   child: Text(
                     "التالي",
-                    style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   ),
                   style: ElevatedButton.styleFrom(
                     fixedSize: const Size(280, 50),
                   ),
-                )
+                  onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => RoomsDetailsScreen(
+                            numberOfRooms:
+                                int.parse(_numberOfRoomsFilter.text)),
+                      )),
+                ),
               ],
             ),
           ),
