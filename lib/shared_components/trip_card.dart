@@ -8,7 +8,6 @@ import '../screens/HomeScreen.dart';
 class TripCard extends StatelessWidget {
   final String tripName;
   final int duration;
-  final int totalNumberOfRooms;
   final List<dynamic> availableHotels;
 
   const TripCard({
@@ -16,7 +15,6 @@ class TripCard extends StatelessWidget {
     required this.tripName,
     required this.availableHotels,
     required this.duration,
-    required this.totalNumberOfRooms,
   }) : super(key: key);
 
   @override
@@ -29,10 +27,10 @@ class TripCard extends StatelessWidget {
                   tripName: tripName,
                   duration: duration,
                   availableHotels: availableHotels,
-                  totalNumberOfRooms: totalNumberOfRooms))),
+                  ))),
       child: Container(
         padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-        height: 240,
+        height: 170,
         width: double.maxFinite,
         child: Card(
           // color: Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0),
@@ -41,38 +39,6 @@ class TripCard extends StatelessWidget {
             children: <Widget>[
               SizedBox(
                 height: 20,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    width: 20,
-                  ),
-                  CircleAvatar(
-                    backgroundColor: totalNumberOfRooms == 0
-                        ? Colors.redAccent
-                        : Colors.yellow,
-                    radius: 25,
-                    child: Text(
-                      totalNumberOfRooms.toString(),
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 5,
-              ),
-              Row(
-                children: [
-                  SizedBox(
-                    width: 27,
-                  ),
-                  Text("غرفة"),
-                ],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

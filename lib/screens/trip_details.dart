@@ -6,14 +6,12 @@ import 'package:paradise/shared_components/hotel_card.dart';
 class TripDetails extends StatefulWidget {
   final String tripName;
   final int duration;
-  final int totalNumberOfRooms;
   final List<dynamic> availableHotels;
 
   const TripDetails(
       {Key? key,
       required this.tripName,
       required this.duration,
-      required this.totalNumberOfRooms,
       required this.availableHotels})
       : super(key: key);
 
