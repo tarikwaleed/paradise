@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-enum RoomTypes { single, double, triple }
+enum RoomType { single, double, triple }
 
 class RoomTypeRadio extends StatefulWidget {
   const RoomTypeRadio({Key? key}) : super(key: key);
@@ -10,37 +10,37 @@ class RoomTypeRadio extends StatefulWidget {
 }
 
 class _RoomTypeRadioState extends State<RoomTypeRadio> {
-  RoomTypes? _roomType = RoomTypes.single;
+  RoomType? _roomType = RoomType.single;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        RadioListTile<RoomTypes>(
+        RadioListTile<RoomType>(
           title: const Text('سنجل'),
-          value: RoomTypes.single,
+          value: RoomType.single,
           groupValue: _roomType,
-          onChanged: (RoomTypes? value) {
+          onChanged: (RoomType? value) {
             setState(() {
               _roomType = value;
             });
           },
         ),
-        RadioListTile<RoomTypes>(
+        RadioListTile<RoomType>(
           title: const Text('دبل'),
-          value: RoomTypes.double,
+          value: RoomType.double,
           groupValue: _roomType,
-          onChanged: (RoomTypes? value) {
+          onChanged: (RoomType? value) {
             setState(() {
               _roomType = value;
             });
           },
         ),
-        RadioListTile<RoomTypes>(
+        RadioListTile<RoomType>(
           title: const Text('تربل'),
-          value: RoomTypes.triple,
+          value: RoomType.triple,
           groupValue: _roomType,
-          onChanged: (RoomTypes? value) {
+          onChanged: (RoomType? value) {
             setState(() {
               _roomType = value;
             });
