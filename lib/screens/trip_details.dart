@@ -55,22 +55,9 @@ class _TripDetailsState extends State<TripDetails> {
     );
   }
 
-  Widget _buildHotel(DocumentReference hotelReference) {
-    return StreamBuilder<DocumentSnapshot>(
-      stream: hotelReference.snapshots(),
-      builder:
-          (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
-        String hotelName = snapshot.data?['hotel_name'] ?? "";
-        int numberOfRooms = snapshot.data?['number_of_rooms'] ?? 0;
-        int nightPricePerPerson = snapshot.data?['night_price_per_person'] ?? 0;
-        return HotelCard(
-          hotelName: hotelName,
-          numberOfRooms: numberOfRooms,
-          nightPricePerPerson: nightPricePerPerson,
-          tripDuration: widget.duration,
-          tripName: widget.tripName,
-        );
-      },
-    );
+  // Each hotel is a Map<dynamic,dynamic>
+  Widget _buildHotel(Map<String,dynamic> hotelMap) {
+    return HotelCard(selectedHotel: hotelMap, tripDuration: widget.duration, tripName: widget.tripName);
+
   }
 }

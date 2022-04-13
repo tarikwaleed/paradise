@@ -8,12 +8,12 @@ import '../screens/HomeScreen.dart';
 class TripCard extends StatelessWidget {
   final String tripName;
   final int duration;
-  final List<dynamic> availableHotels;
+  final List<dynamic> hotels;
 
   const TripCard({
     Key? key,
     required this.tripName,
-    required this.availableHotels,
+    required this.hotels,
     required this.duration,
   }) : super(key: key);
 
@@ -26,7 +26,7 @@ class TripCard extends StatelessWidget {
               builder: (context) => TripDetails(
                   tripName: tripName,
                   duration: duration,
-                  availableHotels: availableHotels,
+                  availableHotels: hotels,
                   ))),
       child: Container(
         padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),

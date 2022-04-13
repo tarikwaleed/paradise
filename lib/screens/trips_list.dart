@@ -13,7 +13,7 @@ class TripsList extends StatefulWidget {
 
 class _TripsListState extends State<TripsList> {
   final Stream<QuerySnapshot> _tripsStream =
-      FirebaseFirestore.instance.collection('triips').snapshots();
+      FirebaseFirestore.instance.collection('trips').snapshots();
 
   @override
   Widget build(BuildContext context) {
@@ -54,9 +54,9 @@ class _TripsListState extends State<TripsList> {
                     Map<String, dynamic> data =
                         document.data()! as Map<String, dynamic>;
                     return TripCard(
-                      tripName: data['trip_name'] ?? '',
+                      tripName: data['name'] ?? '',
                       duration: data['duration'] ?? 0,
-                      availableHotels: data['available_hotels'] ?? [],
+                      hotels: data['hotels'] ?? [],
                     );
                   }).toList(),
                 ),
