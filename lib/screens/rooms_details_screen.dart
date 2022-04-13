@@ -39,26 +39,41 @@ class _RoomsDetailsScreenState extends State<RoomsDetailsScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          "10,000",
-                          style:
-                              TextStyle(fontSize: 80, fontWeight: FontWeight.bold,),
-                        ),
                       ],
-                    ),
-                    ElevatedButton(
-                      child: Text(
-                        "التالي",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 20),
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        fixedSize: const Size(280, 50),
-                      ),
-                      onPressed: () {},
                     ),
                   ],
                 ),
+              ),
+              Text(
+                "المبلغ الاجمالي",
+                style: TextStyle(fontSize: 20),
+              ),
+              Text(
+                "10,000",
+                style:
+                TextStyle(fontSize: 80, fontWeight: FontWeight.bold,),
+              ),
+              ElevatedButton(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    SizedBox(
+                      width: 50,
+                    ),
+                    Text(
+                      "بيانات العميل",
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    ),
+                    SizedBox(
+                      width: 50,
+                    ),
+                    Icon(Icons.arrow_forward_outlined),
+                  ],
+                ),
+                style: ElevatedButton.styleFrom(
+                  fixedSize: const Size(280, 50),
+                ),
+                onPressed: (){},
               ),
             ],
           ),
