@@ -7,7 +7,7 @@ import 'dart:math' as math;
 import '../screens/HomeScreen.dart';
 
 class HotelCard extends StatelessWidget {
-  final Map<String,dynamic> selectedHotel;
+  final Map<String, dynamic> selectedHotel;
   final int tripDuration;
   final String tripName;
 
@@ -22,7 +22,7 @@ class HotelCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-      height: 140,
+      height: 200,
       width: double.maxFinite,
       child: Card(
         // color: Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0),
@@ -31,6 +31,29 @@ class HotelCard extends StatelessWidget {
           children: <Widget>[
             SizedBox(
               height: 20,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                SizedBox(
+                  width: 20,
+                ),
+                CircleAvatar(
+                  radius: 25,
+                  child: Text(
+                    "${selectedHotel['nrooms']}",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                SizedBox(
+                  width: 30,
+                ),
+                Text("غرفة")
+              ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -52,7 +75,7 @@ class HotelCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
-                  width: defaultPadding ,
+                  width: defaultPadding,
                 ),
                 Text(
                   (selectedHotel['price']).toString(),
