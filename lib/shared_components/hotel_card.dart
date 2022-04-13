@@ -24,81 +24,91 @@ class HotelCard extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
       height: 200,
       width: double.maxFinite,
-      child: Card(
-        // color: Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0),
-        elevation: 5,
-        child: Column(
-          children: <Widget>[
-            SizedBox(
-              height: 20,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                SizedBox(
-                  width: 20,
-                ),
-                CircleAvatar(
-                  radius: 25,
-                  child: Text(
-                    "${selectedHotel['nrooms']}",
-                    style: TextStyle(fontWeight: FontWeight.bold),
+      child: GestureDetector(
+        onTap: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => NumberOfRoomsScreen(
+                  tripName: tripName,
+                  tripDuration: tripDuration,
+                  selectedHotel: selectedHotel,
+                ))),
+        child: Card(
+          // color: Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0),
+          elevation: 5,
+          child: Column(
+            children: <Widget>[
+              SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    width: 20,
                   ),
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                SizedBox(
-                  width: 30,
-                ),
-                Text("غرفة")
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  selectedHotel['hotel_name'],
-                  style: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.blueGrey,
+                  CircleAvatar(
+                    radius: 25,
+                    child: Text(
+                      "${selectedHotel['nrooms']}",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
                   ),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(
-                  width: defaultPadding,
-                ),
-                Text(
-                  (selectedHotel['price']).toString(),
-                  style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.yellow,
+                ],
+              ),
+              Row(
+                children: [
+                  SizedBox(
+                    width: 30,
                   ),
-                ),
-                SizedBox(
-                  width: defaultPadding / 2,
-                ),
-                Text(
-                  "جنية للفرد",
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.blueGrey,
+                  Text("غرفة")
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    selectedHotel['hotel_name'],
+                    style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.blueGrey,
+                    ),
                   ),
-                ),
-              ],
-            ),
-          ],
+                ],
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    width: defaultPadding,
+                  ),
+                  Text(
+                    (selectedHotel['price']).toString(),
+                    style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.yellow,
+                    ),
+                  ),
+                  SizedBox(
+                    width: defaultPadding / 2,
+                  ),
+                  Text(
+                    "جنية للفرد",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.blueGrey,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -5,15 +5,15 @@ import 'package:paradise/screens/rooms_details_screen.dart';
 
 
 class NumberOfRoomsScreen extends StatefulWidget {
+  final Map<String, dynamic> selectedHotel;
   final String tripName;
   final int tripDuration;
-  final int nightPricePerPerson;
 
   const NumberOfRoomsScreen({
     Key? key,
+    required this.selectedHotel,
     required this.tripName,
     required this.tripDuration,
-    required this.nightPricePerPerson,
   }) : super(key: key);
 
   @override
@@ -27,7 +27,7 @@ class _NumberOfRoomsScreenState extends State<NumberOfRoomsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("حجز في رحلة ${widget.tripName}"),
+        title: Text("حجز في فندق ${widget.selectedHotel['hotel_name']}"),
         centerTitle: true,
         backgroundColor: Colors.white70,
       ),
