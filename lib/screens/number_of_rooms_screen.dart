@@ -61,9 +61,21 @@ class _NumberOfRoomsScreenState extends State<NumberOfRoomsScreen> {
                   height: 130,
                 ),
                 ElevatedButton(
-                  child: Text(
-                    "التالي",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      SizedBox(
+                        width: 50,
+                      ),
+                      Text(
+                        "تفاصيل الغرف",
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                      ),
+                      SizedBox(
+                        width: 50,
+                      ),
+                      Icon(Icons.arrow_forward_outlined),
+                    ],
                   ),
                   style: ElevatedButton.styleFrom(
                     fixedSize: const Size(280, 50),
