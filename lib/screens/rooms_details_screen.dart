@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:paradise/helpers/room_type_radio.dart';
+import 'package:paradise/screens/client_details_screen.dart';
 
 class RoomsDetailsScreen extends StatefulWidget {
   final int numberOfRooms;
@@ -38,8 +39,7 @@ class _RoomsDetailsScreenState extends State<RoomsDetailsScreen> {
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                      ],
+                      children: [],
                     ),
                   ],
                 ),
@@ -50,8 +50,10 @@ class _RoomsDetailsScreenState extends State<RoomsDetailsScreen> {
               ),
               Text(
                 "10,000",
-                style:
-                TextStyle(fontSize: 80, fontWeight: FontWeight.bold,),
+                style: TextStyle(
+                  fontSize: 80,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               ElevatedButton(
                 child: Row(
@@ -62,7 +64,8 @@ class _RoomsDetailsScreenState extends State<RoomsDetailsScreen> {
                     ),
                     Text(
                       "بيانات العميل",
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                     ),
                     SizedBox(
                       width: 50,
@@ -73,7 +76,10 @@ class _RoomsDetailsScreenState extends State<RoomsDetailsScreen> {
                 style: ElevatedButton.styleFrom(
                   fixedSize: const Size(280, 50),
                 ),
-                onPressed: (){},
+                onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ClientDetailsScreen())),
               ),
             ],
           ),
