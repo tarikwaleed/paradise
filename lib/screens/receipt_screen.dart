@@ -6,12 +6,14 @@ class ReceiptScreen extends StatefulWidget {
   final String clientName;
   final String clientPhoneNumber;
   final String clientWhatsappNumber;
+  final int numberOfRooms;
 
   const ReceiptScreen({
     Key? key,
     required this.clientName,
     required this.clientPhoneNumber,
     required this.clientWhatsappNumber,
+    required this.numberOfRooms,
   }) : super(key: key);
 
   @override
@@ -27,20 +29,21 @@ class _ReceiptScreenState extends State<ReceiptScreen> {
           padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
           child: ListView(
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 40,
               ),
               _buildLogo(),
               _buildSlogan(),
               _buildDivider(),
               _buildTitle(),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               _buildDateTime(),
               _buildDivider(),
               _buildClientDetails(),
               _buildDivider(),
+              _buildReservationDetails(),
             ],
           ),
         ),
@@ -49,14 +52,14 @@ class _ReceiptScreenState extends State<ReceiptScreen> {
   }
 
   Widget _buildLogo() {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 50.0, top: 20.0),
+    return const Padding(
+      padding: EdgeInsets.only(bottom: 50.0, top: 20.0),
       child: ParadiseLogo(),
     );
   }
 
   Widget _buildSlogan() {
-    return Text(
+    return const Text(
       "شركة السياحة الرائدة في اسيوط",
       style: TextStyle(
         fontSize: 25,
@@ -66,7 +69,7 @@ class _ReceiptScreenState extends State<ReceiptScreen> {
   }
 
   Widget _buildTitle() {
-    return Text(
+    return const Text(
       "ايصال دفع",
       style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
     );
@@ -76,7 +79,7 @@ class _ReceiptScreenState extends State<ReceiptScreen> {
     final now = DateTime.now();
     return Text(
       "الوقت والتاريخ: ${now.hour}:${now.minute} | ${now.day}-${now.month}-${now.year}",
-      style: TextStyle(fontSize: 25),
+      style: const TextStyle(fontSize: 25),
     );
   }
 
@@ -87,14 +90,14 @@ class _ReceiptScreenState extends State<ReceiptScreen> {
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
-            children: [
+            children: const [
               Text(
                 "بيانات العميل",
                 style: TextStyle(fontSize: 25),
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Row(
@@ -102,11 +105,11 @@ class _ReceiptScreenState extends State<ReceiptScreen> {
             children: [
               Text(
                 "الاسم : ${widget.clientName}",
-                style: TextStyle(fontSize: 20),
+                style: const TextStyle(fontSize: 20),
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Row(
@@ -114,11 +117,11 @@ class _ReceiptScreenState extends State<ReceiptScreen> {
             children: [
               Text(
                 "رقم التليفون : ${widget.clientPhoneNumber}",
-                style: TextStyle(fontSize: 20),
+                style: const TextStyle(fontSize: 20),
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Row(
@@ -126,7 +129,7 @@ class _ReceiptScreenState extends State<ReceiptScreen> {
             children: [
               Text(
                 "رقم الواتساب : ${widget.clientWhatsappNumber}",
-                style: TextStyle(fontSize: 20),
+                style: const TextStyle(fontSize: 20),
               ),
             ],
           ),
@@ -135,9 +138,37 @@ class _ReceiptScreenState extends State<ReceiptScreen> {
     );
   }
 
-  Widget _buildDivider() {
+  Widget _buildReservationDetails() {
     return Column(
       children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: const [
+            Text(
+              "تفاصيل الحجز",
+              style: TextStyle(fontSize: 25),
+            ),
+          ],
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children:  [
+            Text(
+              "عدد الغرف : ${widget.numberOfRooms.toString()}",
+              style: TextStyle(fontSize: 20),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget _buildDivider() {
+    return Column(
+      children: const [
         SizedBox(
           height: 10,
         ),

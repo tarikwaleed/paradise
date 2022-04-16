@@ -3,7 +3,12 @@ import 'package:flutter/material.dart';
 import 'receipt_screen.dart';
 
 class ClientDetailsScreen extends StatefulWidget {
-  const ClientDetailsScreen({Key? key}) : super(key: key);
+  final int numberOfRooms;
+
+  const ClientDetailsScreen({
+    Key? key,
+    required this.numberOfRooms,
+  }) : super(key: key);
 
   @override
   State<ClientDetailsScreen> createState() => _ClientDetailsScreenState();
@@ -15,7 +20,7 @@ class _ClientDetailsScreenState extends State<ClientDetailsScreen> {
       TextEditingController();
 
   final TextEditingController _clientWhatsappNumberFilter =
-  TextEditingController();
+      TextEditingController();
   String _clientName = "";
   String _clientPhoneNumber = "";
   String _clientWhatsappNumber = "";
@@ -41,6 +46,7 @@ class _ClientDetailsScreenState extends State<ClientDetailsScreen> {
       _clientPhoneNumber = _clientPhoneNumberFilter.text;
     }
   }
+
   void _clientWhatsappNumberListen() {
     if (_clientWhatsappNumberFilter.text.isEmpty) {
       _clientWhatsappNumber = "";
@@ -128,9 +134,9 @@ class _ClientDetailsScreenState extends State<ClientDetailsScreen> {
                       MaterialPageRoute(
                           builder: (context) => ReceiptScreen(
                                 clientName: _clientName,
-                                clientPhoneNumber:
-                                    _clientPhoneNumber,
-                            clientWhatsappNumber: _clientWhatsappNumber,
+                                clientPhoneNumber: _clientPhoneNumber,
+                                clientWhatsappNumber: _clientWhatsappNumber,
+                                numberOfRooms: widget.numberOfRooms,
                               ))),
                 ),
               ],

@@ -79,7 +79,7 @@ class _RoomsDetailsScreenState extends State<RoomsDetailsScreen> {
                 onPressed: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => ClientDetailsScreen())),
+                        builder: (context) => ClientDetailsScreen(numberOfRooms:widget.numberOfRooms,))),
               ),
             ],
           ),
