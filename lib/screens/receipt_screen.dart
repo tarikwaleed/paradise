@@ -5,11 +5,13 @@ import '../shared_components/ParadiseLogo.dart';
 class ReceiptScreen extends StatefulWidget {
   final String clientName;
   final String clientPhoneNumber;
+  final String clientWhatsappNumber;
 
   const ReceiptScreen({
     Key? key,
     required this.clientName,
     required this.clientPhoneNumber,
+    required this.clientWhatsappNumber,
   }) : super(key: key);
 
   @override
@@ -112,6 +114,18 @@ class _ReceiptScreenState extends State<ReceiptScreen> {
             children: [
               Text(
                 "رقم التليفون : ${widget.clientPhoneNumber}",
+                style: TextStyle(fontSize: 20),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                "رقم الواتساب : ${widget.clientWhatsappNumber}",
                 style: TextStyle(fontSize: 20),
               ),
             ],

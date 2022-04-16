@@ -13,12 +13,17 @@ class _ClientDetailsScreenState extends State<ClientDetailsScreen> {
   final TextEditingController _clientNameFilter = TextEditingController();
   final TextEditingController _clientPhoneNumberFilter =
       TextEditingController();
+
+  final TextEditingController _clientWhatsappNumberFilter =
+  TextEditingController();
   String _clientName = "";
   String _clientPhoneNumber = "";
+  String _clientWhatsappNumber = "";
 
   _ClientDetailsScreenState() {
     _clientNameFilter.addListener(_clientNameListen);
     _clientPhoneNumberFilter.addListener(_clientPhoneNumberListen);
+    _clientWhatsappNumberFilter.addListener(_clientWhatsappNumberListen);
   }
 
   void _clientNameListen() {
@@ -34,6 +39,13 @@ class _ClientDetailsScreenState extends State<ClientDetailsScreen> {
       _clientPhoneNumber = "";
     } else {
       _clientPhoneNumber = _clientPhoneNumberFilter.text;
+    }
+  }
+  void _clientWhatsappNumberListen() {
+    if (_clientWhatsappNumberFilter.text.isEmpty) {
+      _clientWhatsappNumber = "";
+    } else {
+      _clientWhatsappNumber = _clientWhatsappNumberFilter.text;
     }
   }
 
@@ -76,6 +88,18 @@ class _ClientDetailsScreenState extends State<ClientDetailsScreen> {
                   ),
                 ),
                 SizedBox(
+                  height: 20,
+                ),
+                TextFormField(
+                  controller: _clientWhatsappNumberFilter,
+                  decoration: InputDecoration(
+                    labelText: "رقم الواتساب",
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                  ),
+                ),
+                SizedBox(
                   height: 280,
                 ),
                 ElevatedButton(
@@ -106,6 +130,7 @@ class _ClientDetailsScreenState extends State<ClientDetailsScreen> {
                                 clientName: _clientName,
                                 clientPhoneNumber:
                                     _clientPhoneNumber,
+                            clientWhatsappNumber: _clientWhatsappNumber,
                               ))),
                 ),
               ],
