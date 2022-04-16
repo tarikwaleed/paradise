@@ -3,7 +3,14 @@ import 'package:flutter/material.dart';
 import '../shared_components/ParadiseLogo.dart';
 
 class ReceiptScreen extends StatefulWidget {
-  const ReceiptScreen({Key? key}) : super(key: key);
+  final String clientName;
+  final String clientPhoneNumber;
+
+  const ReceiptScreen({
+    Key? key,
+    required this.clientName,
+    required this.clientPhoneNumber,
+  }) : super(key: key);
 
   @override
   State<ReceiptScreen> createState() => _ReceiptScreenState();
@@ -15,8 +22,8 @@ class _ReceiptScreenState extends State<ReceiptScreen> {
     return Scaffold(
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-          child: Column(
+          padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+          child: ListView(
             children: [
               SizedBox(
                 height: 40,
@@ -34,17 +41,18 @@ class _ReceiptScreenState extends State<ReceiptScreen> {
                 height: 30,
               ),
               _buildTitle(),
-              SizedBox(
-                height: 20,
-              ),
               _buildDateTime(),
               SizedBox(
-                height: 30,
+                height: 50,
               ),
               Divider(
                 color: Colors.black,
                 thickness: 5,
               ),
+              SizedBox(
+                height: 20,
+              ),
+              _buildClientDetails(),
             ],
           ),
         ),
@@ -61,7 +69,7 @@ class _ReceiptScreenState extends State<ReceiptScreen> {
 
   Widget _buildSlogan() {
     return Text(
-      "شركة السياحه الرائده في اسيوط",
+      "شركة السياحة الرائدة في اسيوط",
       style: TextStyle(
         fontSize: 25,
         fontWeight: FontWeight.bold,
@@ -81,6 +89,51 @@ class _ReceiptScreenState extends State<ReceiptScreen> {
     return Text(
       "الوقت والتاريخ: ${now.hour}:${now.minute} | ${now.day}-${now.month}-${now.year}",
       style: TextStyle(fontSize: 25),
+    );
+  }
+
+  Widget _buildClientDetails() {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+      child: Expanded(
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(
+                  "بيانات العميل",
+                  style: TextStyle(fontSize: 25),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(
+                  "الاسم:${widget.clientName}",
+                  style: TextStyle(fontSize: 20),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(
+                  "رقم التليفون:${widget.clientPhoneNumber}",
+                  style: TextStyle(fontSize: 20),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
