@@ -30,29 +30,15 @@ class _ReceiptScreenState extends State<ReceiptScreen> {
               ),
               _buildLogo(),
               _buildSlogan(),
+              _buildDivider(),
+              _buildTitle(),
               SizedBox(
                 height: 10,
               ),
-              Divider(
-                color: Colors.black,
-                thickness: 5,
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              _buildTitle(),
               _buildDateTime(),
-              SizedBox(
-                height: 50,
-              ),
-              Divider(
-                color: Colors.black,
-                thickness: 5,
-              ),
-              SizedBox(
-                height: 20,
-              ),
+              _buildDivider(),
               _buildClientDetails(),
+              _buildDivider(),
             ],
           ),
         ),
@@ -95,45 +81,60 @@ class _ReceiptScreenState extends State<ReceiptScreen> {
   Widget _buildClientDetails() {
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-      child: Expanded(
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text(
-                  "بيانات العميل",
-                  style: TextStyle(fontSize: 25),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text(
-                  "الاسم:${widget.clientName}",
-                  style: TextStyle(fontSize: 20),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text(
-                  "رقم التليفون:${widget.clientPhoneNumber}",
-                  style: TextStyle(fontSize: 20),
-                ),
-              ],
-            ),
-          ],
-        ),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                "بيانات العميل",
+                style: TextStyle(fontSize: 25),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                "الاسم : ${widget.clientName}",
+                style: TextStyle(fontSize: 20),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                "رقم التليفون : ${widget.clientPhoneNumber}",
+                style: TextStyle(fontSize: 20),
+              ),
+            ],
+          ),
+        ],
       ),
+    );
+  }
+
+  Widget _buildDivider() {
+    return Column(
+      children: [
+        SizedBox(
+          height: 10,
+        ),
+        Divider(
+          color: Colors.black,
+          thickness: 5,
+        ),
+        SizedBox(
+          height: 30,
+        ),
+      ],
     );
   }
 }
