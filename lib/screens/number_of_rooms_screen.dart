@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:paradise/screens/rooms_details_screen.dart';
 
-
 class NumberOfRoomsScreen extends StatefulWidget {
   final Map<String, dynamic> selectedHotel;
   final String tripName;
@@ -69,7 +68,8 @@ class _NumberOfRoomsScreenState extends State<NumberOfRoomsScreen> {
                       ),
                       Text(
                         "تفاصيل الغرف",
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 20),
                       ),
                       SizedBox(
                         width: 50,
@@ -84,8 +84,9 @@ class _NumberOfRoomsScreenState extends State<NumberOfRoomsScreen> {
                       context,
                       MaterialPageRoute(
                         builder: (context) => RoomsDetailsScreen(
-                            numberOfRooms:
-                                int.parse(_numberOfRoomsFilter.text)),
+                          numberOfRooms: int.parse(_numberOfRoomsFilter.text),
+                          hotelName: widget.selectedHotel['hotel_name'],
+                        ),
                       )),
                 ),
               ],
@@ -95,5 +96,4 @@ class _NumberOfRoomsScreenState extends State<NumberOfRoomsScreen> {
       ),
     );
   }
-
 }

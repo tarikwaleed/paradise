@@ -7,6 +7,8 @@ class ReceiptScreen extends StatefulWidget {
   final String clientPhoneNumber;
   final String clientWhatsappNumber;
   final int numberOfRooms;
+  final String hotelName;
+
 
   const ReceiptScreen({
     Key? key,
@@ -14,6 +16,7 @@ class ReceiptScreen extends StatefulWidget {
     required this.clientPhoneNumber,
     required this.clientWhatsappNumber,
     required this.numberOfRooms,
+    required this.hotelName,
   }) : super(key: key);
 
   @override
@@ -152,6 +155,15 @@ class _ReceiptScreenState extends State<ReceiptScreen> {
         ),
         const SizedBox(
           height: 10,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children:  [
+            Text(
+              "اسم الفندق : ${widget.hotelName}",
+              style: TextStyle(fontSize: 20),
+            ),
+          ],
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.start,

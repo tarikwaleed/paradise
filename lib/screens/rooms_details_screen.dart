@@ -4,10 +4,12 @@ import 'package:paradise/screens/client_details_screen.dart';
 
 class RoomsDetailsScreen extends StatefulWidget {
   final int numberOfRooms;
+  final String hotelName;
 
   const RoomsDetailsScreen({
     Key? key,
     required this.numberOfRooms,
+    required this.hotelName,
   }) : super(key: key);
 
   @override
@@ -79,7 +81,10 @@ class _RoomsDetailsScreenState extends State<RoomsDetailsScreen> {
                 onPressed: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => ClientDetailsScreen(numberOfRooms:widget.numberOfRooms,))),
+                        builder: (context) => ClientDetailsScreen(
+                              numberOfRooms: widget.numberOfRooms,
+                              hotelName: widget.hotelName,
+                            ))),
               ),
             ],
           ),

@@ -4,10 +4,12 @@ import 'receipt_screen.dart';
 
 class ClientDetailsScreen extends StatefulWidget {
   final int numberOfRooms;
+  final String hotelName;
 
   const ClientDetailsScreen({
     Key? key,
     required this.numberOfRooms,
+    required this.hotelName,
   }) : super(key: key);
 
   @override
@@ -137,6 +139,7 @@ class _ClientDetailsScreenState extends State<ClientDetailsScreen> {
                                 clientPhoneNumber: _clientPhoneNumber,
                                 clientWhatsappNumber: _clientWhatsappNumber,
                                 numberOfRooms: widget.numberOfRooms,
+                            hotelName: widget.hotelName,
                               ))),
                 ),
               ],
