@@ -11,11 +11,13 @@ class RoomTypeRadio extends StatefulWidget {
 
 class _RoomTypeRadioState extends State<RoomTypeRadio> {
   RoomType? _roomType = RoomType.single;
+  int _numberOfPersons=1;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
+        Text(_numberOfPersons.toString()),
         RadioListTile<RoomType>(
           title: const Text('سنجل'),
           value: RoomType.single,
@@ -23,6 +25,7 @@ class _RoomTypeRadioState extends State<RoomTypeRadio> {
           onChanged: (RoomType? value) {
             setState(() {
               _roomType = value;
+              _numberOfPersons=value==RoomType.single?1:value==RoomType.double?2:3;
             });
           },
         ),
