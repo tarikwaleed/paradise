@@ -50,7 +50,7 @@ class HotelCard extends StatelessWidget {
                   CircleAvatar(
                     radius: 25,
                     child: Text(
-                      "${data['hotels'][hotelIndex]['nrooms']}",
+                      "${data['hotels'][hotelIndex.toString()]['nrooms']}",
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
@@ -68,7 +68,7 @@ class HotelCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    (data['hotels'][hotelIndex]['hotel_name']).toString(),
+                    (data['hotels'][hotelIndex.toString()]['hotel_name']).toString(),
                     style: TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.bold,
@@ -87,7 +87,7 @@ class HotelCard extends StatelessWidget {
                     width: defaultPadding,
                   ),
                   Text(
-                    (data['hotels'][hotelIndex]['price']).toString(),
+                    (data['hotels'][hotelIndex.toString()]['price']).toString(),
                     style: TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.bold,

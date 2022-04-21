@@ -25,7 +25,7 @@ class _ReservationDetailsState extends State<ReservationDetails> {
         backgroundColor: Colors.white70,
         centerTitle: true,
         title: Text(
-            "حجز في فندق ${widget.data['hotels'][widget.hotelIndex]['hotel_name']}"),
+            "حجز في فندق ${widget.data['hotels'][widget.hotelIndex.toString()]['hotel_name']}"),
       ),
       body: Form(
         child: Padding(
@@ -38,7 +38,7 @@ class _ReservationDetailsState extends State<ReservationDetails> {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    Reserve(widget.documentId, widget.hotelIndex);
+                    Database.reserve(widget.documentId, widget.hotelIndex,9);
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,

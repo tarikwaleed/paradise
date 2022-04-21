@@ -46,7 +46,7 @@ class _TripDetailsState extends State<TripDetails> {
                 itemCount: widget.data['hotels'].length,
                 itemBuilder: (context, hotelIndex) {
                   return _buildHotel(
-                      widget.data['hotels'][hotelIndex], hotelIndex);
+                      widget.data['hotels'][hotelIndex.toString()], hotelIndex);
                 }),
           ),
         ],
