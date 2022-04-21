@@ -53,10 +53,10 @@ class _TripsListState extends State<TripsList> {
                       snapshot.data!.docs.map((DocumentSnapshot document) {
                     Map<String, dynamic> data =
                         document.data()! as Map<String, dynamic>;
+                    String documentId = document.id;
                     return TripCard(
-                      tripName: data['name'] ?? '',
-                      duration: data['duration'] ?? 0,
-                      hotels: data['hotels'] ?? [],
+                      documentId: documentId,
+                      data: data,
                     );
                   }).toList(),
                 ),

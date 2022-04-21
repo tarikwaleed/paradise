@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:paradise/constants.dart';
 import 'package:paradise/screens/trip_details.dart';
@@ -6,28 +7,26 @@ import 'dart:math' as math;
 import '../screens/HomeScreen.dart';
 
 class TripCard extends StatelessWidget {
-  final String tripName;
-  final int duration;
-  final List<dynamic> hotels;
+  final String documentId;
+  final Map<String,dynamic> data;
 
   const TripCard({
+    required this.documentId,
+    required this.data,
     Key? key,
-    required this.tripName,
-    required this.hotels,
-    required this.duration,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => TripDetails(
-                  tripName: tripName,
-                  duration: duration,
-                  availableHotels: hotels,
-                  ))),
+      // onTap: () => Navigator.push(
+      //     context,
+      //     MaterialPageRoute(
+      //         builder: (context) => TripDetails(
+      //             tripName: tripName,
+      //             duration: duration,
+      //             availableHotels: hotels,
+      //             ))),
       child: Container(
         padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
         height: 170,
@@ -44,7 +43,7 @@ class TripCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    tripName,
+                    data['name'],
                     style: TextStyle(
                       fontSize: 50,
                       fontWeight: FontWeight.bold,
@@ -62,7 +61,7 @@ class TripCard extends StatelessWidget {
                     width: defaultPadding * 7,
                   ),
                   Text(
-                    duration.toString(),
+                    (data['duration']).toString(),
                     style: TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.bold,
