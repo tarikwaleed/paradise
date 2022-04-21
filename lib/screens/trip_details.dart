@@ -4,16 +4,14 @@ import 'package:flutter/rendering.dart';
 import 'package:paradise/shared_components/hotel_card.dart';
 
 class TripDetails extends StatefulWidget {
-  final String tripName;
-  final int duration;
-  final List<dynamic> availableHotels;
+  final String documentId;
+  final Map<String, dynamic> data;
 
-  const TripDetails(
-      {Key? key,
-      required this.tripName,
-      required this.duration,
-      required this.availableHotels})
-      : super(key: key);
+  const TripDetails({
+    Key? key,
+    required this.documentId,
+    required this.data,
+  }) : super(key: key);
 
   @override
   State<TripDetails> createState() => _TripDetailsState();
@@ -31,7 +29,7 @@ class _TripDetailsState extends State<TripDetails> {
             Navigator.pop(context);
           },
         ),
-        title: Text("رحلة " + widget.tripName),
+        title: Text("رحلة " + widget.data['name']),
         centerTitle: true,
       ),
       body: Column(
@@ -45,9 +43,10 @@ class _TripDetailsState extends State<TripDetails> {
           ),
           Expanded(
             child: ListView.builder(
-                itemCount: widget.availableHotels.length,
-                itemBuilder: (context, index) {
-                  return _buildHotel(widget.availableHotels[index]);
+                itemCount: widget.data['hotels'].length,
+                itemBuilder: (context, hotelIndex) {
+                  return _buildHotel(
+                      widget.data['hotels'][hotelIndex], hotelIndex);
                 }),
           ),
         ],
@@ -56,8 +55,11 @@ class _TripDetailsState extends State<TripDetails> {
   }
 
   // Each hotel is a Map<dynamic,dynamic>
-  Widget _buildHotel(Map<String,dynamic> hotelMap) {
-    return HotelCard(selectedHotel: hotelMap, tripDuration: widget.duration, tripName: widget.tripName);
-
+  Widget _buildHotel(Map<String, dynamic> hotelMap, int hotelIndex) {
+    return HotelCard(
+      documentId: widget.documentId,
+      data: widget.data,
+      hotelIndex: hotelIndex,
+    );
   }
 }

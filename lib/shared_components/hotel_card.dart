@@ -7,15 +7,15 @@ import 'dart:math' as math;
 import '../screens/HomeScreen.dart';
 
 class HotelCard extends StatelessWidget {
-  final Map<String, dynamic> selectedHotel;
-  final int tripDuration;
-  final String tripName;
+  final String documentId;
+  final Map<String, dynamic> data;
+  final int hotelIndex;
 
   const HotelCard({
     Key? key,
-    required this.selectedHotel,
-    required this.tripDuration,
-    required this.tripName,
+    required this.documentId,
+    required this.data,
+    required this.hotelIndex,
   }) : super(key: key);
 
   @override
@@ -25,14 +25,14 @@ class HotelCard extends StatelessWidget {
       height: 200,
       width: double.maxFinite,
       child: GestureDetector(
-        onTap: () => Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => NumberOfRoomsScreen(
-                  tripName: tripName,
-                  tripDuration: tripDuration,
-                  selectedHotel: selectedHotel,
-                ))),
+        // onTap: () => Navigator.push(
+        //     context,
+        //     MaterialPageRoute(
+        //         builder: (context) => NumberOfRoomsScreen(
+        //               tripName: data['name'],
+        //               tripDuration: data['duration'],
+        //               selectedHotel: selectedHotel,
+        //             ))),
         child: Card(
           // color: Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0),
           elevation: 5,
@@ -50,7 +50,7 @@ class HotelCard extends StatelessWidget {
                   CircleAvatar(
                     radius: 25,
                     child: Text(
-                      "${selectedHotel['nrooms']}",
+                      "${data['hotels'][hotelIndex]['nrooms']}",
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
@@ -68,7 +68,7 @@ class HotelCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    selectedHotel['hotel_name'],
+                    (data['hotels'][hotelIndex]['hotel_name']).toString(),
                     style: TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.bold,
@@ -87,7 +87,7 @@ class HotelCard extends StatelessWidget {
                     width: defaultPadding,
                   ),
                   Text(
-                    (selectedHotel['price']).toString(),
+                    (data['hotels'][hotelIndex]['price']).toString(),
                     style: TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.bold,

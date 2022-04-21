@@ -8,7 +8,7 @@ import '../screens/HomeScreen.dart';
 
 class TripCard extends StatelessWidget {
   final String documentId;
-  final Map<String,dynamic> data;
+  final Map<String, dynamic> data;
 
   const TripCard({
     required this.documentId,
@@ -19,14 +19,13 @@ class TripCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      // onTap: () => Navigator.push(
-      //     context,
-      //     MaterialPageRoute(
-      //         builder: (context) => TripDetails(
-      //             tripName: tripName,
-      //             duration: duration,
-      //             availableHotels: hotels,
-      //             ))),
+      onTap: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => TripDetails(
+                    documentId: documentId,
+                    data: data,
+                  ))),
       child: Container(
         padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
         height: 170,
