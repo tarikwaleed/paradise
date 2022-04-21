@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:paradise/constants.dart';
-import 'package:paradise/screens/number_of_rooms_screen.dart';
 import 'package:paradise/screens/trip_details.dart';
 import 'dart:math' as math;
 
