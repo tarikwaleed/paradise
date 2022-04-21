@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:paradise/db/db.dart';
 
 class ReservationDetails extends StatefulWidget {
   final String documentId;
@@ -23,8 +24,8 @@ class _ReservationDetailsState extends State<ReservationDetails> {
       appBar: AppBar(
         backgroundColor: Colors.white70,
         centerTitle: true,
-        title: Text("حجز في فندق ${widget.data['hotels'][widget.hotelIndex]['hotel_name']}"),
-
+        title: Text(
+            "حجز في فندق ${widget.data['hotels'][widget.hotelIndex]['hotel_name']}"),
       ),
       body: Form(
         child: Padding(
@@ -36,7 +37,9 @@ class _ReservationDetailsState extends State<ReservationDetails> {
                   height: 400,
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Reserve(widget.documentId, widget.hotelIndex);
+                  },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
