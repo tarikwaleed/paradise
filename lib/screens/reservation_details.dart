@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
 
 class ReservationDetails extends StatefulWidget {
-  const ReservationDetails({Key? key}) : super(key: key);
+  final String documentId;
+  final Map<String, dynamic> data;
+  final int hotelIndex;
+
+  const ReservationDetails(
+      {Key? key,
+      required this.documentId,
+      required this.data,
+      required this.hotelIndex})
+      : super(key: key);
 
   @override
   State<ReservationDetails> createState() => _ReservationDetailsState();
@@ -11,6 +20,12 @@ class _ReservationDetailsState extends State<ReservationDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white70,
+        centerTitle: true,
+        title: Text("حجز في فندق ${widget.data['hotels'][widget.hotelIndex]['hotel_name']}"),
+
+      ),
       body: Form(
         child: Padding(
           padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
