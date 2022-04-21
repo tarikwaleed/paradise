@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:paradise/db/db.dart';
 
@@ -22,6 +23,12 @@ class _ReservationDetailsState extends State<ReservationDetails> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(left: 10),
+            child: CircleAvatar(),
+          ),
+        ],
         backgroundColor: Colors.white70,
         centerTitle: true,
         title: Text(
@@ -38,7 +45,7 @@ class _ReservationDetailsState extends State<ReservationDetails> {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    Database.reserve(widget.documentId, widget.hotelIndex,9);
+                    Database.reserve(widget.documentId, widget.hotelIndex, 9);
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
