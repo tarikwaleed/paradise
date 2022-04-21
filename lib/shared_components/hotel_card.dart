@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:paradise/constants.dart';
+import 'package:paradise/screens/reservation_details.dart';
 import 'package:paradise/screens/trip_details.dart';
 import 'dart:math' as math;
 
@@ -24,14 +25,8 @@ class HotelCard extends StatelessWidget {
       height: 200,
       width: double.maxFinite,
       child: GestureDetector(
-        // onTap: () => Navigator.push(
-        //     context,
-        //     MaterialPageRoute(
-        //         builder: (context) => NumberOfRoomsScreen(
-        //               tripName: data['name'],
-        //               tripDuration: data['duration'],
-        //               selectedHotel: selectedHotel,
-        //             ))),
+        onTap: () => Navigator.push(context,
+            MaterialPageRoute(builder: (context) => ReservationDetails())),
         child: Card(
           // color: Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0),
           elevation: 5,
