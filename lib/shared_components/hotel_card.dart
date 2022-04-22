@@ -50,7 +50,7 @@ class HotelCard extends StatelessWidget {
                   CircleAvatar(
                     radius: 25,
                     child: Text(
-                      "${data['hotels'][hotelIndex.toString()]['nrooms']}",
+                      "${(data['hotels'][hotelIndex.toString()]['nrooms'])-(data['hotels'][hotelIndex.toString()]['reserved'])}",
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
