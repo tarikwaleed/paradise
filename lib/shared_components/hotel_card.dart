@@ -50,10 +50,14 @@ class HotelCard extends StatelessWidget {
                   CircleAvatar(
                     radius: 25,
                     child: Text(
-                      "${(data['hotels'][hotelIndex.toString()]['nrooms'])-(data['hotels'][hotelIndex.toString()]['reserved'])}",
+                      "${(data['hotels'][hotelIndex.toString()]['nrooms']) - (data['hotels'][hotelIndex.toString()]['reserved'])}",
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
+                  SizedBox(
+                    width: 120,
+                  ),
+                  ..._buildStars(data['hotels'][hotelIndex.toString()]['stars']),
                 ],
               ),
               Row(
@@ -68,7 +72,8 @@ class HotelCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    (data['hotels'][hotelIndex.toString()]['hotel_name']).toString(),
+                    (data['hotels'][hotelIndex.toString()]['hotel_name'])
+                        .toString(),
                     style: TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.bold,
@@ -112,5 +117,17 @@ class HotelCard extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  List<Widget> _buildStars(int numberOfStars) {
+    List<Widget> listOfStars = [];
+    for (int i = 0; i < numberOfStars; i++) {
+      listOfStars.add(Image.asset(
+        'assets/images/star.png',
+        width: 35,
+        height: 35,
+      ));
+    }
+    return listOfStars;
   }
 }

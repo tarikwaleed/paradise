@@ -30,6 +30,7 @@ flutter:
 
   assets:
     - assets/images/paradise_logo.png
+    - assets/images/star.png
   fonts:
     - family: Tajawal
       fonts:
