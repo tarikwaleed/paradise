@@ -158,7 +158,9 @@ class _ReservationDetailsState extends State<ReservationDetails> {
                   height: 30,
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    _showConfirmationPopup(context);
+                  },
                   child: Text("حجز"),
                   style: ElevatedButton.styleFrom(
                     fixedSize: const Size(280, 50),
@@ -170,6 +172,33 @@ class _ReservationDetailsState extends State<ReservationDetails> {
         ),
       ),
     );
+  }
+
+  void _showConfirmationPopup(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (BuildContext ctx) {
+          return AlertDialog(
+            title: Text("تأكيد عملية الحجز"),
+            content: Text("تاكيد عملية حجز 5 غرف"),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text("نعم", style: TextStyle(color: Colors.green)),
+              ),
+              TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text(
+                    "لا",
+                    style: TextStyle(color: Colors.redAccent),
+                  )),
+            ],
+          );
+        });
   }
 
   Widget _getHotelAvailableNumberOfRooms() {
