@@ -27,14 +27,17 @@ class HotelCard extends StatelessWidget {
       height: 200,
       width: double.maxFinite,
       child: GestureDetector(
-        onTap: () => Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => ReservationDetails(
-                      documentId: documentId,
-                      data: data,
-                      hotelIndex: hotelIndex,
-                    ))),
+        onTap: () {
+          if (data['hotels'][hotelIndex.toString()]['nrooms'] > 0)
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => ReservationDetails(
+                          documentId: documentId,
+                          data: data,
+                          hotelIndex: hotelIndex,
+                        )));
+        },
         child: Card(
           // color: Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0),
           semanticContainer: true,
@@ -42,7 +45,7 @@ class HotelCard extends StatelessWidget {
           elevation: 5,
           child: Stack(children: [
             ImageFiltered(
-              imageFilter: ImageFilter.blur(sigmaX: 3,sigmaY: 3),
+              imageFilter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
               child: Image.asset(
                 'assets/images/hotel${math.Random().nextInt(6)}.jpg',
                 width: 500,
@@ -65,8 +68,12 @@ class HotelCard extends StatelessWidget {
                       radius: 25,
                       child: Text(
                         "${(data['hotels'][hotelIndex.toString()]['nrooms']) - (data['hotels'][hotelIndex.toString()]['reserved'])}",
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        style: TextStyle(fontWeight: FontWeight.bold,color: Colors.black),
                       ),
+                      backgroundColor:
+                          (data['hotels'][hotelIndex.toString()]['nrooms'] > 0
+                              ? Colors.white
+                              : Colors.redAccent),
                     ),
                     SizedBox(
                       width: 100,
@@ -76,21 +83,13 @@ class HotelCard extends StatelessWidget {
                   ],
                 ),
                 Row(
-                  children: [
-                    SizedBox(
-                      width: 30,
-                    ),
-                    Text("غرفة",style: TextStyle(color: Colors.white),)
-                  ],
-                ),
-                Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
                       (data['hotels'][hotelIndex.toString()]['hotel_name'])
                           .toString(),
                       style: TextStyle(
-                        fontSize: 25,
+                        fontSize: 30,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                       ),
