@@ -29,8 +29,7 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/images/paradise_logo.png
-    - assets/images/star.png
+    - assets/images/
   fonts:
     - family: Tajawal
       fonts:

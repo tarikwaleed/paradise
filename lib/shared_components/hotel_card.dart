@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:paradise/constants.dart';
 import 'package:paradise/screens/reservation_details.dart';
@@ -35,85 +37,100 @@ class HotelCard extends StatelessWidget {
                     ))),
         child: Card(
           // color: Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0),
+          semanticContainer: true,
+          clipBehavior: Clip.antiAliasWithSaveLayer,
           elevation: 5,
-          child: Column(
-            children: <Widget>[
-              SizedBox(
-                height: 20,
+          child: Stack(children: [
+            ImageFiltered(
+              imageFilter: ImageFilter.blur(sigmaX: 3,sigmaY: 3),
+              child: Image.asset(
+                'assets/images/hotel${math.Random().nextInt(6)}.jpg',
+                width: 500,
+                height: 500,
+                fit: BoxFit.fill,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    width: 20,
-                  ),
-                  CircleAvatar(
-                    radius: 25,
-                    child: Text(
-                      "${(data['hotels'][hotelIndex.toString()]['nrooms']) - (data['hotels'][hotelIndex.toString()]['reserved'])}",
-                      style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            Column(
+              children: <Widget>[
+                SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      width: 20,
                     ),
-                  ),
-                  SizedBox(
-                    width: 120,
-                  ),
-                  ..._buildStars(data['hotels'][hotelIndex.toString()]['stars']),
-                ],
-              ),
-              Row(
-                children: [
-                  SizedBox(
-                    width: 30,
-                  ),
-                  Text("غرفة")
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    (data['hotels'][hotelIndex.toString()]['hotel_name'])
-                        .toString(),
-                    style: TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.blueGrey,
+                    CircleAvatar(
+                      radius: 25,
+                      child: Text(
+                        "${(data['hotels'][hotelIndex.toString()]['nrooms']) - (data['hotels'][hotelIndex.toString()]['reserved'])}",
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
                     ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    width: defaultPadding,
-                  ),
-                  Text(
-                    (data['hotels'][hotelIndex.toString()]['price']).toString(),
-                    style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.yellow,
+                    SizedBox(
+                      width: 100,
                     ),
-                  ),
-                  SizedBox(
-                    width: defaultPadding / 2,
-                  ),
-                  Text(
-                    "جنية للفرد",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.blueGrey,
+                    ..._buildStars(
+                        data['hotels'][hotelIndex.toString()]['stars']),
+                  ],
+                ),
+                Row(
+                  children: [
+                    SizedBox(
+                      width: 30,
                     ),
-                  ),
-                ],
-              ),
-            ],
-          ),
+                    Text("غرفة",style: TextStyle(color: Colors.white),)
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      (data['hotels'][hotelIndex.toString()]['hotel_name'])
+                          .toString(),
+                      style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      width: defaultPadding,
+                    ),
+                    Text(
+                      (data['hotels'][hotelIndex.toString()]['price'])
+                          .toString(),
+                      style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.yellow,
+                      ),
+                    ),
+                    SizedBox(
+                      width: defaultPadding / 2,
+                    ),
+                    Text(
+                      "جنية للفرد",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ]),
         ),
       ),
     );
