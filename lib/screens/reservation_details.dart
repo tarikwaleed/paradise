@@ -26,7 +26,9 @@ class _ReservationDetailsState extends State<ReservationDetails> {
         actions: [
           Padding(
             padding: const EdgeInsets.only(left: 10),
-            child: CircleAvatar(),
+            child: CircleAvatar(
+              child: _getHotelAvailableNumberOfRooms(),
+            ),
           ),
         ],
         backgroundColor: Colors.white70,
@@ -74,5 +76,28 @@ class _ReservationDetailsState extends State<ReservationDetails> {
         ),
       ),
     );
+  }
+
+  Widget _getHotelAvailableNumberOfRooms() {
+    return StreamBuilder(
+        stream: FirebaseFirestore.instance
+            .collection('trips')
+            .doc(widget.documentId)
+            .snapshots(),
+        builder: (context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+          if (!snapshot.hasData) {
+            return Text("Loading");
+          }
+          var tripDocument = snapshot.data!;
+          int nrooms =
+              tripDocument['hotels'][widget.hotelIndex.toString()]['nrooms'];
+          int reserved =
+              tripDocument['hotels'][widget.hotelIndex.toString()]['reserved'];
+          int available = nrooms - reserved;
+          return Text(
+            available.toString(),
+            style: TextStyle(fontWeight: FontWeight.bold),
+          );
+        });
   }
 }
