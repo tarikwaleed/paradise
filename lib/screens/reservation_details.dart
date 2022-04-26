@@ -20,8 +20,30 @@ class ReservationDetails extends StatefulWidget {
 }
 
 class _ReservationDetailsState extends State<ReservationDetails> {
+  final _numberOfPersonsController = TextEditingController();
   int _totalPrice = 0;
-  int _remainder = 0;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _numberOfPersonsController.addListener(_updateTotalPriceText);
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    _numberOfPersonsController.dispose();
+    super.dispose();
+  }
+
+  void _updateTotalPriceText() {
+    int numberOfPersons = int.parse(_numberOfPersonsController.text);
+    int price = widget.data['hotels'][widget.hotelIndex.toString()]['price'];
+    setState(() {
+      _totalPrice = numberOfPersons * price;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +86,7 @@ class _ReservationDetailsState extends State<ReservationDetails> {
                 ),
                 // numberOfPersons
                 TextFormField(
-                  onChanged: _updateTotalPriceText,
+                  controller: _numberOfPersonsController,
                   decoration: InputDecoration(
                     labelText: "عدد الاشخاص",
                     border: OutlineInputBorder(
@@ -142,7 +164,7 @@ class _ReservationDetailsState extends State<ReservationDetails> {
                           ),
                         ),
                         Text(
-                          _remainder.toString(),
+                          '0',
                           style: TextStyle(
                               fontSize: 30,
                               fontWeight: FontWeight.bold,
@@ -156,7 +178,6 @@ class _ReservationDetailsState extends State<ReservationDetails> {
                   height: 30,
                 ),
                 TextFormField(
-                  onChanged: _updateRemainderPriceText,
                   decoration: InputDecoration(
                     labelText: "المبلغ المدفوع",
                     border: OutlineInputBorder(
@@ -182,21 +203,6 @@ class _ReservationDetailsState extends State<ReservationDetails> {
         ),
       ),
     );
-  }
-
-  void _updateTotalPriceText(String numberOfPersons) {
-    int _personPrice =
-        widget.data['hotels'][widget.hotelIndex.toString()]['price'];
-
-    setState(() {
-      _totalPrice = int.parse(numberOfPersons) * _personPrice;
-    });
-  }
-
-  void _updateRemainderPriceText(String paidAmount) {
-    setState(() {
-      _remainder = _totalPrice - int.parse(paidAmount);
-    });
   }
 
   void _showConfirmationPopup(BuildContext context) {
