@@ -20,6 +20,9 @@ class ReservationDetails extends StatefulWidget {
 }
 
 class _ReservationDetailsState extends State<ReservationDetails> {
+  int _totalPrice = 0;
+  int _remainder = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,6 +62,7 @@ class _ReservationDetailsState extends State<ReservationDetails> {
                   height: 50,
                 ),
                 TextFormField(
+                  onChanged: _updateTotalPriceText,
                   decoration: InputDecoration(
                     labelText: "عدد الاشخاص",
                     border: OutlineInputBorder(
@@ -115,7 +119,7 @@ class _ReservationDetailsState extends State<ReservationDetails> {
                           ),
                         ),
                         Text(
-                          "15000",
+                          _totalPrice.toString(),
                           style: TextStyle(
                               fontSize: 30,
                               fontWeight: FontWeight.bold,
@@ -133,7 +137,7 @@ class _ReservationDetailsState extends State<ReservationDetails> {
                           ),
                         ),
                         Text(
-                          "5000",
+                          _remainder.toString(),
                           style: TextStyle(
                               fontSize: 30,
                               fontWeight: FontWeight.bold,
@@ -172,6 +176,15 @@ class _ReservationDetailsState extends State<ReservationDetails> {
         ),
       ),
     );
+  }
+
+  void _updateTotalPriceText(String numberOfPersons) {
+    int _personPrice =
+        widget.data['hotels'][widget.hotelIndex.toString()]['price'];
+
+    setState(() {
+      _totalPrice = int.parse(numberOfPersons) * _personPrice;
+    });
   }
 
   void _showConfirmationPopup(BuildContext context) {
