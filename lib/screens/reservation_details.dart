@@ -190,9 +190,42 @@ class _ReservationDetailsState extends State<ReservationDetails> {
                       SizedBox(
                         height: 30,
                       ),
+                      TextFormField(
+                        controller: _paidAmountController,
+                        decoration: InputDecoration(
+                          labelText: "المبلغ المدفوع",
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 30,
+                      ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
+                          Column(
+                            children: [
+                              Text(
+                                "الغرف",
+                                style: TextStyle(
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                _totalNumberOfRooms.toString(),
+                                style: TextStyle(
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.greenAccent),
+                              ),
+                            ],
+                          ),
                           Column(
                             children: [
                               Text(
@@ -201,6 +234,9 @@ class _ReservationDetailsState extends State<ReservationDetails> {
                                   fontSize: 30,
                                   fontWeight: FontWeight.bold,
                                 ),
+                              ),
+                              SizedBox(
+                                height: 10,
                               ),
                               Text(
                                 _totalPrice.toString(),
@@ -220,6 +256,9 @@ class _ReservationDetailsState extends State<ReservationDetails> {
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
+                              SizedBox(
+                                height: 10,
+                              ),
                               Text(
                                 _remainderAmount.toString(),
                                 style: TextStyle(
@@ -230,18 +269,6 @@ class _ReservationDetailsState extends State<ReservationDetails> {
                             ],
                           )
                         ],
-                      ),
-                      SizedBox(
-                        height: 30,
-                      ),
-                      TextFormField(
-                        controller: _paidAmountController,
-                        decoration: InputDecoration(
-                          labelText: "المبلغ المدفوع",
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                        ),
                       ),
                       SizedBox(
                         height: 30,
@@ -273,7 +300,7 @@ class _ReservationDetailsState extends State<ReservationDetails> {
           return AlertDialog(
             title: Text("تأكيد عملية الحجز"),
             content: Text(
-                "تأكيد عملية حجز ${_totalNumberOfRooms} غرفة في فندق  ${widget.data['hotels'][widget.hotelIndex.toString()]['hotel_name']}"),
+                "تأكيد عملية حجز ${_totalNumberOfRooms} غرفة في فندق  ${widget.data['hotels'][widget.hotelIndex.toString()]['hotel_name']} باجمالي مبلغ ${_totalPrice}"),
             actions: [
               TextButton(
                 onPressed: () {
