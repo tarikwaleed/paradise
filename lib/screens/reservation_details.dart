@@ -44,8 +44,9 @@ class _ReservationDetailsState extends State<ReservationDetails> {
         child: Padding(
           padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
           child: Center(
-            child: Column(
+            child: ListView(
               children: [
+                // Headline
                 Row(
                   children: [
                     Padding(
@@ -61,6 +62,7 @@ class _ReservationDetailsState extends State<ReservationDetails> {
                 SizedBox(
                   height: 50,
                 ),
+                // numberOfPersons
                 TextFormField(
                   onChanged: _updateTotalPriceText,
                   decoration: InputDecoration(
@@ -73,6 +75,7 @@ class _ReservationDetailsState extends State<ReservationDetails> {
                 SizedBox(
                   height: 10,
                 ),
+                // doubleNumberOfRooms
                 TextFormField(
                   decoration: InputDecoration(
                     labelText: "عدد الغرف الدبل",
@@ -84,6 +87,7 @@ class _ReservationDetailsState extends State<ReservationDetails> {
                 SizedBox(
                   height: 10,
                 ),
+                // tripleNumberOfRooms
                 TextFormField(
                   decoration: InputDecoration(
                     labelText: "عدد الغرف التربل",
@@ -95,6 +99,7 @@ class _ReservationDetailsState extends State<ReservationDetails> {
                 SizedBox(
                   height: 10,
                 ),
+                // singleNumberOfRooms
                 TextFormField(
                   decoration: InputDecoration(
                     labelText: "عدد الغرف السنجل",
@@ -151,6 +156,7 @@ class _ReservationDetailsState extends State<ReservationDetails> {
                   height: 30,
                 ),
                 TextFormField(
+                  onChanged: _updateRemainderPriceText,
                   decoration: InputDecoration(
                     labelText: "المبلغ المدفوع",
                     border: OutlineInputBorder(
@@ -184,6 +190,12 @@ class _ReservationDetailsState extends State<ReservationDetails> {
 
     setState(() {
       _totalPrice = int.parse(numberOfPersons) * _personPrice;
+    });
+  }
+
+  void _updateRemainderPriceText(String paidAmount) {
+    setState(() {
+      _remainder = _totalPrice - int.parse(paidAmount);
     });
   }
 
