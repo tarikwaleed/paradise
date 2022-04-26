@@ -21,19 +21,23 @@ class ReservationDetails extends StatefulWidget {
 
 class _ReservationDetailsState extends State<ReservationDetails> {
   final _numberOfPersonsController = TextEditingController();
+  final _paidAmountController = TextEditingController();
   int _totalPrice = 0;
+  int _remainderAmount = 0;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     _numberOfPersonsController.addListener(_updateTotalPriceText);
+    _paidAmountController.addListener(_updateRemainderAmountText);
   }
 
   @override
   void dispose() {
     // TODO: implement dispose
     _numberOfPersonsController.dispose();
+    _paidAmountController.dispose();
     super.dispose();
   }
 
@@ -41,7 +45,18 @@ class _ReservationDetailsState extends State<ReservationDetails> {
     int numberOfPersons = int.parse(_numberOfPersonsController.text);
     int price = widget.data['hotels'][widget.hotelIndex.toString()]['price'];
     setState(() {
-      _totalPrice = numberOfPersons * price;
+      if (_numberOfPersonsController.text.isEmpty) {
+        _totalPrice = 0;
+      } else {
+        _totalPrice = numberOfPersons * price;
+      }
+    });
+  }
+
+  void _updateRemainderAmountText() {
+    // setState _remainderAmount= _totalPrice-paidAmountTextField.text
+    setState(() {
+      _remainderAmount = _totalPrice - int.parse(_paidAmountController.text);
     });
   }
 
@@ -164,7 +179,7 @@ class _ReservationDetailsState extends State<ReservationDetails> {
                           ),
                         ),
                         Text(
-                          '0',
+                          _remainderAmount.toString(),
                           style: TextStyle(
                               fontSize: 30,
                               fontWeight: FontWeight.bold,
@@ -178,6 +193,7 @@ class _ReservationDetailsState extends State<ReservationDetails> {
                   height: 30,
                 ),
                 TextFormField(
+                  controller: _paidAmountController,
                   decoration: InputDecoration(
                     labelText: "المبلغ المدفوع",
                     border: OutlineInputBorder(
