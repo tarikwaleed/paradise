@@ -132,75 +132,10 @@ class _ReservationDetailsState extends State<ReservationDetails> {
                                   fontSize: 50, fontWeight: FontWeight.bold),
                             ),
                           ),
-                          Text(_totalNumberOfRooms.toString())
                         ],
                       ),
                       SizedBox(
-                        height: 50,
-                      ),
-                      // numberOfPersons
-                      TextFormField(
-                        controller: _numberOfPersonsController,
-                        decoration: InputDecoration(
-                          labelText: "عدد الاشخاص",
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      // doubleNumberOfRooms
-                      TextFormField(
-                        controller: _doubleNumberOfRoomsController,
-                        decoration: InputDecoration(
-                          labelText: "عدد الغرف الدبل",
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      // tripleNumberOfRooms
-                      TextFormField(
-                        controller: _tripleNumberOfRoomsController,
-                        decoration: InputDecoration(
-                          labelText: "عدد الغرف التربل",
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      // singleNumberOfRooms
-                      TextFormField(
-                        controller: _singleNumberOfRoomsController,
-                        decoration: InputDecoration(
-                          labelText: "عدد الغرف السنجل",
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 30,
-                      ),
-                      TextFormField(
-                        controller: _paidAmountController,
-                        decoration: InputDecoration(
-                          labelText: "المبلغ المدفوع",
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 30,
+                        height: 20,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -271,20 +206,90 @@ class _ReservationDetailsState extends State<ReservationDetails> {
                         ],
                       ),
                       SizedBox(
+                        height: 20,
+                      ),
+                      // numberOfPersons
+                      TextFormField(
+                        controller: _numberOfPersonsController,
+                        decoration: InputDecoration(
+                          labelText: "عدد الاشخاص",
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      // doubleNumberOfRooms
+                      TextFormField(
+                        controller: _doubleNumberOfRoomsController,
+                        decoration: InputDecoration(
+                          labelText: "عدد الغرف الدبل",
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      // tripleNumberOfRooms
+                      TextFormField(
+                        controller: _tripleNumberOfRoomsController,
+                        decoration: InputDecoration(
+                          labelText: "عدد الغرف التربل",
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      // singleNumberOfRooms
+                      TextFormField(
+                        controller: _singleNumberOfRoomsController,
+                        decoration: InputDecoration(
+                          labelText: "عدد الغرف السنجل",
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
                         height: 30,
                       ),
-                      ElevatedButton(
-                        onPressed: () {
-                          _showConfirmationPopup(context);
-                        },
-                        child: Text("حجز"),
-                        style: ElevatedButton.styleFrom(
-                          fixedSize: const Size(280, 50),
+                      TextFormField(
+                        controller: _paidAmountController,
+                        decoration: InputDecoration(
+                          labelText: "المبلغ المدفوع",
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5),
+                          ),
                         ),
+                      ),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      SizedBox(
+                        height: 30,
                       ),
                     ],
                   ),
                 ),
+                ElevatedButton(
+                  onPressed: () {
+                    _showConfirmationPopup(context);
+                  },
+                  child: Text("حجز"),
+                  style: ElevatedButton.styleFrom(
+                    fixedSize: const Size(280, 50),
+                  ),
+                ),
+                SizedBox(
+                  height: 30,
+                )
               ],
             ),
           ),
