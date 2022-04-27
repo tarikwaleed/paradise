@@ -28,7 +28,9 @@ class HotelCard extends StatelessWidget {
       width: double.maxFinite,
       child: GestureDetector(
         onTap: () {
-          if (data['hotels'][hotelIndex.toString()]['nrooms'] > 0)
+          if (data['hotels'][hotelIndex.toString()]['nrooms'] -
+                  data['hotels'][hotelIndex.toString()]['reserved'] >
+              0)
             Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -68,12 +70,16 @@ class HotelCard extends StatelessWidget {
                       radius: 25,
                       child: Text(
                         "${(data['hotels'][hotelIndex.toString()]['nrooms']) - (data['hotels'][hotelIndex.toString()]['reserved'])}",
-                        style: TextStyle(fontWeight: FontWeight.bold,color: Colors.black),
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, color: Colors.black),
                       ),
-                      backgroundColor:
-                          (data['hotels'][hotelIndex.toString()]['nrooms'] > 0
-                              ? Colors.white
-                              : Colors.redAccent),
+                      backgroundColor: ((data['hotels'][hotelIndex.toString()]
+                                      ['nrooms']) -
+                                  (data['hotels'][hotelIndex.toString()]
+                                      ['reserved']) >
+                              0
+                          ? Colors.white
+                          : Colors.redAccent),
                     ),
                     SizedBox(
                       width: 20,
