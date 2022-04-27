@@ -76,7 +76,7 @@ class HotelCard extends StatelessWidget {
                               : Colors.redAccent),
                     ),
                     SizedBox(
-                      width: 100,
+                      width: 20,
                     ),
                     ..._buildStars(
                         data['hotels'][hotelIndex.toString()]['stars']),
