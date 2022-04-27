@@ -23,6 +23,7 @@ class _ReservationDetailsState extends State<ReservationDetails> {
   final _doubleNumberOfRoomsController = TextEditingController();
   final _tripleNumberOfRoomsController = TextEditingController();
   final _singleNumberOfRoomsController = TextEditingController();
+  final _paymentMethodController = TextEditingController();
 
   int _totalPrice = 0;
   int _remainderAmount = 0;
@@ -50,6 +51,7 @@ class _ReservationDetailsState extends State<ReservationDetails> {
     _doubleNumberOfRoomsController.dispose();
     _tripleNumberOfRoomsController.dispose();
     _singleNumberOfRoomsController.dispose();
+    _paidAmountController.dispose();
     super.dispose();
   }
 
@@ -271,6 +273,15 @@ class _ReservationDetailsState extends State<ReservationDetails> {
                       ),
                       SizedBox(
                         height: 30,
+                      ),
+                      TextFormField(
+                        controller: _paymentMethodController,
+                        decoration: InputDecoration(
+                          labelText: "طريقة الدفع",
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                        ),
                       ),
                       SizedBox(
                         height: 30,
