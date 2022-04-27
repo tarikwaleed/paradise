@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:paradise/screens/client_details_screen.dart';
 
 class ReservationDetails extends StatefulWidget {
   final String documentId;
@@ -319,9 +320,10 @@ class _ReservationDetailsState extends State<ReservationDetails> {
                 "تأكيد عملية حجز ${_totalNumberOfRooms} غرفة في فندق  ${widget.data['hotels'][widget.hotelIndex.toString()]['hotel_name']} باجمالي مبلغ ${_totalPrice}"),
             actions: [
               TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
+                onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ClientDetailsScreen())),
                 child: Text("نعم", style: TextStyle(color: Colors.green)),
               ),
               TextButton(

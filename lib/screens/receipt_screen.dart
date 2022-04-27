@@ -3,20 +3,10 @@ import 'package:flutter/material.dart';
 import '../shared_components/ParadiseLogo.dart';
 
 class ReceiptScreen extends StatefulWidget {
-  final String clientName;
-  final String clientPhoneNumber;
-  final String clientWhatsappNumber;
-  final int numberOfRooms;
-  final String hotelName;
 
 
   const ReceiptScreen({
     Key? key,
-    required this.clientName,
-    required this.clientPhoneNumber,
-    required this.clientWhatsappNumber,
-    required this.numberOfRooms,
-    required this.hotelName,
   }) : super(key: key);
 
   @override
@@ -107,7 +97,7 @@ class _ReceiptScreenState extends State<ReceiptScreen> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
-                "الاسم : ${widget.clientName}",
+                "الاسم : طارق وليد",
                 style: const TextStyle(fontSize: 20),
               ),
             ],
@@ -119,7 +109,7 @@ class _ReceiptScreenState extends State<ReceiptScreen> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
-                "رقم التليفون : ${widget.clientPhoneNumber}",
+                "رقم التليفون : 01153905279",
                 style: const TextStyle(fontSize: 20),
               ),
             ],
@@ -131,7 +121,7 @@ class _ReceiptScreenState extends State<ReceiptScreen> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
-                "رقم الواتساب : ${widget.clientWhatsappNumber}",
+                "رقم الواتساب : 01065590159",
                 style: const TextStyle(fontSize: 20),
               ),
             ],
@@ -160,7 +150,7 @@ class _ReceiptScreenState extends State<ReceiptScreen> {
           mainAxisAlignment: MainAxisAlignment.start,
           children:  [
             Text(
-              "اسم الفندق : ${widget.hotelName}",
+              "اسم الفندق : هاواي سيذر",
               style: TextStyle(fontSize: 20),
             ),
           ],
@@ -169,7 +159,7 @@ class _ReceiptScreenState extends State<ReceiptScreen> {
           mainAxisAlignment: MainAxisAlignment.start,
           children:  [
             Text(
-              "عدد الغرف : ${widget.numberOfRooms.toString()}",
+              "عدد الغرف : 5",
               style: TextStyle(fontSize: 20),
             ),
           ],

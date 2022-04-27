@@ -3,13 +3,8 @@ import 'package:flutter/material.dart';
 import 'receipt_screen.dart';
 
 class ClientDetailsScreen extends StatefulWidget {
-  final int numberOfRooms;
-  final String hotelName;
-
   const ClientDetailsScreen({
     Key? key,
-    required this.numberOfRooms,
-    required this.hotelName,
   }) : super(key: key);
 
   @override
@@ -131,16 +126,8 @@ class _ClientDetailsScreenState extends State<ClientDetailsScreen> {
                   style: ElevatedButton.styleFrom(
                     fixedSize: const Size(280, 50),
                   ),
-                  onPressed: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => ReceiptScreen(
-                                clientName: _clientName,
-                                clientPhoneNumber: _clientPhoneNumber,
-                                clientWhatsappNumber: _clientWhatsappNumber,
-                                numberOfRooms: widget.numberOfRooms,
-                            hotelName: widget.hotelName,
-                              ))),
+                  onPressed: () => Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => ReceiptScreen())),
                 ),
               ],
             ),
